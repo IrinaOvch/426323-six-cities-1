@@ -1,7 +1,7 @@
 # Личный проект «Шесть городов» [![Build status][travis-image]][travis-url]
 
 * Студент: [Ирина Овчинникова](https://up.htmlacademy.ru/react/1/user/426323).
-* Наставник: `Неизвестно`.
+* Наставник: [Егор Огарков](https://up.htmlacademy.ru/react/1/user/58697).
 
 ---
 
