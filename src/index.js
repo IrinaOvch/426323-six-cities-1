@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {App} from './components/app/app.jsx';
+import App from './components/app/app.jsx';
 
 const rentalObjects = [
   {
@@ -19,7 +19,10 @@ const rentalObjects = [
 
 const init = () => {
   ReactDOM.render(
-      <App rentalObjects={rentalObjects}/>,
+      <App
+        rentalObjects={rentalObjects}
+        onOfferTitleClick={() => {}}
+      />,
       document.getElementById(`root`)
   );
 };
