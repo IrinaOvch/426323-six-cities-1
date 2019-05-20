@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import MainPage from './main-page.jsx';
+import OffersList from './offers-list.jsx';
 
 const mock = [
   {
@@ -12,7 +12,7 @@ const mock = [
     rating: 4,
     type: `Apartment`,
     isInBookmarks: false,
-  },{
+  }, {
     id: 1,
     title: `Beautiful & luxurious studio at great location`,
     img: `img/apartment-01.jpg`,
@@ -22,15 +22,14 @@ const mock = [
     type: `Apartment`,
     isInBookmarks: false,
   },
-]
+];
 
-it(`renders correctly`, () => {
-  const page = renderer.create(
-      <MainPage
+it(`Renders correctly`, () => {
+  const offersList = renderer.create(
+      <OffersList
         offers={mock}
-        onOfferTitleClick={jest.fn()}
       />
-  ).toJSON();
+  ).toJSON;
 
-  expect(page).toMatchSnapshot();
+  expect(offersList).toMatchSnapshot();
 });

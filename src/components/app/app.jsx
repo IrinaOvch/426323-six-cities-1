@@ -3,19 +3,24 @@ import PropTypes from 'prop-types';
 import MainPage from '../main-page/main-page.jsx';
 
 const App = (props) => {
-  const {rentalObjects, onOfferTitleClick} = props;
+  const {offers} = props;
 
   return <MainPage
-    rentalObjects={rentalObjects}
-    onOfferTitleClick={onOfferTitleClick}
+    offers={offers}
   />;
 };
 
 App.propTypes = {
-  rentalObjects: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string.isRequired
+  offers: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    isPremium: PropTypes.bool.isRequired,
+    rating: PropTypes.number.isRequired,
+    type: PropTypes.string.isRequired,
+    isInBookmarks: PropTypes.bool.isRequired,
   })).isRequired,
-  onOfferTitleClick: PropTypes.func.isRequired,
 };
 
 export default App;
