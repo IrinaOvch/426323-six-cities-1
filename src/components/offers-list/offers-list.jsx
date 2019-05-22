@@ -10,6 +10,17 @@ class OffersList extends React.PureComponent {
     this.state = {
       activeOffer: null,
     };
+
+    this.handleMouseOver = this.handleMouseOver.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
+  }
+
+  handleMouseOver(offer) {
+    this.setState({activeOffer: offer});
+  }
+
+  handleMouseOut() {
+    this.setState({activeOffer: null});
   }
 
   render() {
@@ -22,12 +33,8 @@ class OffersList extends React.PureComponent {
           onOfferTitleClick={() => {}}
           onOfferImageClick={() => {}}
           key={idx}
-          onMouseOver={() => {
-            this.setState({activeOffer: offer});
-          }}
-          onMouseOut={() => {
-            this.setState({activeOffer: null});
-          }}
+          onMouseOver={this.handleMouseOver}
+          onMouseOut={this.handleMouseOut}
         />
       ))}
     </div>;
