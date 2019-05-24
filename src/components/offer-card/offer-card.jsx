@@ -4,11 +4,17 @@ import PropTypes from "prop-types";
 const OfferCard = (props) => {
   const {offer, onOfferImageClick, onOfferTitleClick, onMouseOver, onMouseOut} = props;
 
+  const handleMouseOver = () => {
+    onMouseOver(offer);
+  };
+
+  const handleClick = () => {
+    onOfferImageClick(offer);
+  };
+
   return <article
     className="cities__place-card place-card"
-    onMouseOver={() => {
-      onMouseOver(offer);
-    }}
+    onMouseOver={handleMouseOver}
     onMouseOut={onMouseOut}>
     {
       offer.isPremium &&
@@ -18,9 +24,7 @@ const OfferCard = (props) => {
     }
 
     <div className="cities__image-wrapper place-card__image-wrapper">
-      <a href="#" onClick={() => {
-        onOfferImageClick(offer);
-      }}>
+      <a href="#" onClick={handleClick}>
         <img className="place-card__image" src={offer.img} width="260" height="200" alt="Place image"/>
       </a>
     </div>
@@ -66,6 +70,11 @@ OfferCard.propTypes = {
   onOfferTitleClick: PropTypes.func.isRequired,
   onMouseOver: PropTypes.func.isRequired,
   onMouseOut: PropTypes.func.isRequired,
+};
+
+OfferCard.defaultProps = {
+  onOfferTitleClick: () => {},
+  onOfferImageClick: () => {}
 };
 
 export default OfferCard;

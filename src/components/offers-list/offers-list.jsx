@@ -30,8 +30,6 @@ class OffersList extends React.PureComponent {
       {offers.map((offer, idx) => (
         <OfferCard
           offer={offer}
-          onOfferTitleClick={() => {}}
-          onOfferImageClick={() => {}}
           key={idx}
           onMouseOver={this.handleMouseOver}
           onMouseOut={this.handleMouseOut}
