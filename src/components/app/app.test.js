@@ -2,10 +2,12 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import App from './app.jsx';
 
-it(`App correctly renders`, () => {
+import offers from '../../mocks/offers.js';
+
+it(`should render App correctly`, () => {
   const tree = renderer
   .create(<App
-    rentalObjects={[{title: `mockTitle`}]}
+    offers={offers}
     onOfferTitleClick={jest.fn()}
   />)
   .toJSON();
