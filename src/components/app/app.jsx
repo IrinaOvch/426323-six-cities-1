@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import MainPage from '../main-page/main-page.jsx';
 
 const App = (props) => {
-  const {offers} = props;
+  const {offers, leaflet} = props;
 
   return <MainPage
     offers={offers}
+    leaflet={leaflet}
   />;
 };
 
@@ -21,6 +22,7 @@ App.propTypes = {
     type: PropTypes.string.isRequired,
     isInBookmarks: PropTypes.bool.isRequired,
   })).isRequired,
+  leaflet: PropTypes.object.isRequired
 };
 
 export default App;

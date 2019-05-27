@@ -2,9 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import OffersList from '../offers-list/offers-list.jsx';
+import Map from '../map/map.jsx';
+import mapData from '../../mocks/map-data.js';
 
 const MainPage = (props) => {
-  const {offers} = props;
+  const {offers, leaflet} = props;
 
   return (
   <>
@@ -95,7 +97,11 @@ const MainPage = (props) => {
             <OffersList offers={offers}/>
           </section>
           <div className="cities__right-section">
-            <section className="cities__map map"></section>
+            <Map
+              mapData={mapData}
+              offers={offers}
+              leaflet={leaflet}
+            />
           </div>
         </div>
       </div>
@@ -117,6 +123,7 @@ MainPage.propTypes = {
     type: PropTypes.string.isRequired,
     isInBookmarks: PropTypes.bool.isRequired,
   })).isRequired,
+  leaflet: PropTypes.object.isRequired,
 };
 
 export default MainPage;
