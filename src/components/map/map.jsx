@@ -24,27 +24,28 @@ class Map extends React.PureComponent {
     this.map.setView(mapData.city, mapData.zoom);
 
     this.leaflet
-    .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
-      attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
-    })
-    .addTo(this.map);
+      .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
+        attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
+      })
+      .addTo(this.map);
 
     for (const offer of offers) {
-      this._addPin(mapData.iconUrl, mapData.iconSize, offer.coordinates);
+      this._addPin(offer.coordinates);
     }
 
 
   }
 
-  _addPin(iconUrl, iconSize, offerCoordinates) {
+  _addPin(offerCoordinates) {
+    const {mapData: {iconUrl, iconSize}} = this.props;
     const icon = this.leaflet.icon({
       iconUrl,
       iconSize,
     });
 
     this.leaflet
-    .marker(offerCoordinates, {icon})
-    .addTo(this.map);
+      .marker(offerCoordinates, {icon})
+      .addTo(this.map);
   }
 
   render() {
