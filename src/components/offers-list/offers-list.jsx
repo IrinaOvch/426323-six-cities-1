@@ -51,10 +51,6 @@ OffersList.propTypes = {
     type: PropTypes.string.isRequired,
     isInBookmarks: PropTypes.bool.isRequired,
   })).isRequired,
-  onOfferImageClick: PropTypes.func.isRequired,
-  onOfferTitleClick: PropTypes.func.isRequired,
-  onMouseOver: PropTypes.func.isRequired,
-  onMouseOut: PropTypes.func.isRequired,
 };
 
 export default OffersList;

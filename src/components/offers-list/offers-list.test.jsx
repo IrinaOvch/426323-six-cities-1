@@ -10,7 +10,7 @@ it(`should render OffersList correctly`, () => {
       <OffersList
         offers={offers}
       />
-  ).toJSON;
+  ).toJSON();
 
   expect(offersList).toMatchSnapshot();
 });
