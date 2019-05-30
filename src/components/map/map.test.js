@@ -12,6 +12,7 @@ it(`should render map correctly`, () => {
       offers={offers}
       mapData={mapData}
       leaflet={leaflet}
+      activeCity={`Paris`}
     />
   ).toJSON();
 
