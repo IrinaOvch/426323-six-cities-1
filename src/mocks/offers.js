@@ -21,7 +21,7 @@ export default [
     rating: 2,
     type: `Private room`,
     isInBookmarks: true,
-    coordinates: [52.369553943508, 4.85309666406198],
+    coordinates: [52.3720767, 4.8428338],
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ export default [
     rating: 3,
     type: `Apartment`,
     isInBookmarks: false,
-    coordinates: [52.3909553943508, 4.929309666406198],
+    coordinates: [52.3743835, 4.8732326],
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ export default [
     rating: 5,
     type: `Apartment`,
     isInBookmarks: false,
-    coordinates: [52.3809553943508, 4.939309666406198],
+    coordinates: [52.3546769, 4.8737476],
   },
   {
     id: 5,
@@ -69,7 +69,7 @@ export default [
     rating: 5,
     type: `Apartment`,
     isInBookmarks: false,
-    coordinates: [48.8589507, 2.2770204],
+    coordinates: [48.863085, 2.345819],
   },
   {
     id: 7,
@@ -81,7 +81,7 @@ export default [
     rating: 5,
     type: `Apartment`,
     isInBookmarks: false,
-    coordinates: [48.8589507, 2.2770204],
+    coordinates: [48.8522361, 2.3409134],
   },
   {
     id: 8,
@@ -105,7 +105,7 @@ export default [
     rating: 5,
     type: `Apartment`,
     isInBookmarks: false,
-    coordinates: [50.9616947, 6.9295803],
+    coordinates: [50.963213, 6.909212],
   },
   {
     id: 10,
@@ -167,5 +167,4 @@ export default [
     isInBookmarks: false,
     coordinates: [51.2385306, 6.8055928],
   },
-
 ];
