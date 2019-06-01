@@ -5,20 +5,21 @@ import ReactDOM from 'react-dom';
 import leaflet from 'leaflet';
 
 import App from './components/app/app.jsx';
-import offers from './mocks/offers.js'
+import offers from './mocks/offers.js';
 import {reducer} from "./reducer.js";
 
-
-
 const init = () => {
-  const store = createStore(reducer);
+  const store = createStore(
+      reducer,
+      window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  );
   ReactDOM.render(<Provider store={store}>
-        <App
-          offers={offers}
-          leaflet={leaflet}
-        />
-      </Provider>,
-      document.getElementById(`root`)
+    <App
+      offers={offers}
+      leaflet={leaflet}
+    />
+  </Provider>,
+  document.getElementById(`root`)
   );
 };
 

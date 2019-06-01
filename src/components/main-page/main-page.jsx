@@ -7,6 +7,9 @@ import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../map/map.jsx';
 import mapData from '../../mocks/map-data.js';
 import {ActionCreator} from '../../reducer.js';
+import withActiveItem from '../../hocs/withActiveItem.jsx';
+
+const OffersListWrapper = withActiveItem(OffersList);
 
 
 const MainPage = (props) => {
@@ -68,7 +71,7 @@ const MainPage = (props) => {
                 <li className="places__option" tabIndex="0">Top rated first</li>
               </ul>
             </form>
-            <OffersList offers={offers}/>
+            <OffersListWrapper offers={offers}/>
           </section>
           <div className="cities__right-section">
             <Map
