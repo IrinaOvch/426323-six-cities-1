@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import CITIES from '../../cities';
 
 class Map extends React.PureComponent {
 
@@ -11,17 +12,16 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {offers, mapData, leaflet} = this.props;
-
+    const {offers, mapData, leaflet, activeCity} = this.props;
     this.leaflet = leaflet;
     this.map = this.leaflet.map(`map`, {
-      center: mapData.city,
+      center: CITIES[activeCity],
       zoom: mapData.zoom,
       zoomControl: mapData.isZoom,
       marker: mapData.isMarker
     });
 
-    this.map.setView(mapData.city, mapData.zoom);
+    this.map.setView(CITIES[activeCity], mapData.zoom);
 
     this.leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
@@ -32,8 +32,21 @@ class Map extends React.PureComponent {
     for (const offer of offers) {
       this._addPin(offer.coordinates);
     }
+  }
 
+  componentDidUpdate() {
+    const {
+      activeCity,
+      offers,
+      mapData
+    } = this.props;
+    const cityCenter = CITIES[activeCity];
+    const {zoom} = mapData;
 
+    this.map.setView(cityCenter, zoom);
+    for (const offer of offers) {
+      this._addPin(offer.coordinates);
+    }
   }
 
   _addPin(offerCoordinates) {
@@ -53,7 +66,6 @@ class Map extends React.PureComponent {
       <div id="map" style={{height: `100%`}}></div>
     </section>;
   }
-
 }
 
 Map.propTypes = {
@@ -76,6 +88,7 @@ Map.propTypes = {
     iconSize: PropTypes.arrayOf(PropTypes.number).isRequired,
   }),
   leaflet: PropTypes.object.isRequired,
+  activeCity: PropTypes.string.isRequired,
 };
 
 export default Map;

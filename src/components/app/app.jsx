@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import MainPage from '../main-page/main-page.jsx';
 
 const App = (props) => {
-  const {offers, leaflet} = props;
+  const {leaflet} = props;
 
   return <MainPage
-    offers={offers}
     leaflet={leaflet}
   />;
 };
