@@ -16,8 +16,8 @@ const card = renderer.create(
     offer={offers[0]}
     onOfferTitleClick={onTitleClickHandler}
     onOfferImageClick={onImageClickHandler}
-    onMouseOver={mouseOverHandler}
-    onMouseOut={mouseLeaveHandler}
+    onMouseEnter={mouseOverHandler}
+    onMouseLeave={mouseLeaveHandler}
   />
 ).toJSON();
 

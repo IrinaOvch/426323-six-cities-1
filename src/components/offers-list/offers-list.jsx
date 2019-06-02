@@ -11,8 +11,8 @@ const OffersList = (props) => {
       <OfferCard
         offer={offer}
         key={idx}
-        onMouseOver={setActiveItem}
-        onMouseOut={setActiveItem}
+        onMouseEnter={setActiveItem}
+        onMouseLeave={setActiveItem}
       />
     ))}
   </div>;

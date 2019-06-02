@@ -7,13 +7,13 @@ import withActiveItem from './withActiveItem.jsx';
 configure({adapter: new Adapter()});
 
 const MockComponent = () => <div />;
-const WithActiveItem = withActiveItem(MockComponent);
+const WithActiveItem = withActiveItem(``)(MockComponent);
 
 it(`should test withActiveItem HOC`, () => {
   const component = shallow(<WithActiveItem/>);
 
-  expect(component.state().activeItem).toEqual(-1);
+  expect(component.state().activeItem).toEqual(``);
 
-  component.props().setActiveItem(10);
-  expect(component.state().activeItem).toEqual(10);
+  component.props().setActiveItem(`test`);
+  expect(component.state().activeItem).toEqual(`test`);
 });

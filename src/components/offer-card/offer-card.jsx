@@ -12,11 +12,11 @@ class OfferCard extends React.PureComponent {
   }
 
   handleMouseOver() {
-    this.props.onMouseOver(this.props.offer);
+    this.props.onMouseEnter(this.props.offer);
   }
 
   handleMouseOut() {
-    this.props.onMouseOut();
+    this.props.onMouseLeave();
   }
 
   handleOfferImageClick() {
@@ -29,8 +29,8 @@ class OfferCard extends React.PureComponent {
 
     return <article
       className="cities__place-card place-card"
-      onMouseOver={this.handleMouseOver}
-      onMouseOut={this.handleMouseOut}>
+      onMouseEnter={this.handleMouseOver}
+      onMouseLeave={this.handleMouseOut}>
       {
         offer.isPremium &&
               <div className="place-card__mark">
@@ -85,6 +85,8 @@ OfferCard.propTypes = {
   }).isRequired,
   onOfferImageClick: PropTypes.func.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
+  onMouseEnter: PropTypes.func.isRequired,
+  onMouseLeave: PropTypes.func.isRequired,
 };
 
 OfferCard.defaultProps = {

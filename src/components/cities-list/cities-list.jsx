@@ -5,14 +5,15 @@ import CITIES from '../../cities.js';
 import CityItem from '../city-item/city-item.jsx';
 
 const CitiesList = (props) => {
-  const {activeCity} = props;
+  const {activeItem, setActiveItem} = props;
   return (<section className="locations container">
     <ul className="locations__list tabs__list">
       {Object.keys(CITIES).map((city) =>
         <CityItem
           city = {city}
-          isActiveCity = {city === activeCity}
+          isActiveCity = {city === activeItem}
           handleCityClick = {props.handleCityClick}
+          setActiveItem = {setActiveItem}
           key={city}
         />
       )}
@@ -22,8 +23,9 @@ const CitiesList = (props) => {
 
 
 CitiesList.propTypes = {
-  activeCity: PropTypes.string.isRequired,
   handleCityClick: PropTypes.func.isRequired,
+  setActiveItem: PropTypes.func.isRequired,
+  activeItem: PropTypes.string.isRequired,
 };
 
 export default CitiesList;

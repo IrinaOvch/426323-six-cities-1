@@ -8,9 +8,10 @@ import Map from '../map/map.jsx';
 import mapData from '../../mocks/map-data.js';
 import {ActionCreator} from '../../reducer.js';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
+import {initialState} from '../../reducer.js'
 
-const OffersListWrapper = withActiveItem(OffersList);
-
+const OffersListWrapper = withActiveItem()(OffersList);
+const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
 
 const MainPage = (props) => {
   const {offers, leaflet, activeCity, handleCityClick} = props;
@@ -46,8 +47,7 @@ const MainPage = (props) => {
     <main className="page__main page__main--index">
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
-        <CitiesList
-          activeCity={activeCity}
+        <CitiesListWrapper
           handleCityClick={handleCityClick}
         />
       </div>
