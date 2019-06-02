@@ -6,8 +6,8 @@ exports[`should render OffersList correctly 1`] = `
 >
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -112,8 +112,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -211,8 +211,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -310,8 +310,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -416,8 +416,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -522,8 +522,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -628,8 +628,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -734,8 +734,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -833,8 +833,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -939,8 +939,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -1045,8 +1045,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -1144,8 +1144,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"
@@ -1250,8 +1250,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="cities__image-wrapper place-card__image-wrapper"
@@ -1349,8 +1349,8 @@ exports[`should render OffersList correctly 1`] = `
   </article>
   <article
     className="cities__place-card place-card"
-    onMouseOut={[Function]}
-    onMouseOver={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
   >
     <div
       className="place-card__mark"

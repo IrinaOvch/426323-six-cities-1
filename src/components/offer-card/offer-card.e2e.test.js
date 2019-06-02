@@ -18,8 +18,8 @@ it(`should call callback when clicking on offer image`, () => {
       offer={offers[0]}
       onOfferTitleClick={handleOfferTitleClick}
       onOfferImageClick={handleOfferImageClick}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      onMouseEnter={handleMouseOver}
+      onMouseLeave={handleMouseOut}
     />
   );
 
@@ -38,8 +38,8 @@ it(`should pass correct data to callback`, () => {
       offer={offers[0]}
       onOfferTitleClick={handleOfferTitleClick}
       onOfferImageClick={handleOfferImageClick}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}
+      onMouseEnter={handleMouseOver}
+      onMouseLeave={handleMouseOut}
     />
   );
 

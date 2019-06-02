@@ -5,10 +5,11 @@ import CitiesList from './cities-list.jsx'
 
 it(`should render CitiesList correctly`, () => {
   const page = renderer.create(
-    <CitiesList
-      activeCity={`Paris`}
-      handleCityClick={jest.fn()}
-    />
+      <CitiesList
+        activeItem={`Paris`}
+        handleCityClick={jest.fn()}
+        setActiveItem={jest.fn()}
+      />
   ).toJSON();
 
   expect(page).toMatchSnapshot();

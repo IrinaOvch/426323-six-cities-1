@@ -3,41 +3,20 @@ import PropTypes from "prop-types";
 
 import OfferCard from "../offer-card/offer-card.jsx";
 
-class OffersList extends React.PureComponent {
-  constructor(props) {
-    super(props);
+const OffersList = (props) => {
+  const {offers, setActiveItem} = props;
 
-    this.state = {
-      activeOffer: null,
-    };
-
-    this.handleMouseOver = this.handleMouseOver.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
-  }
-
-  handleMouseOver(offer) {
-    this.setState({activeOffer: offer});
-  }
-
-  handleMouseOut() {
-    this.setState({activeOffer: null});
-  }
-
-  render() {
-    const {offers} = this.props;
-
-    return <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer, idx) => (
-        <OfferCard
-          offer={offer}
-          key={idx}
-          onMouseOver={this.handleMouseOver}
-          onMouseOut={this.handleMouseOut}
-        />
-      ))}
-    </div>;
-  }
-}
+  return <div className="cities__places-list places__list tabs__content">
+    {offers.map((offer, idx) => (
+      <OfferCard
+        offer={offer}
+        key={idx}
+        onMouseEnter={setActiveItem}
+        onMouseLeave={setActiveItem}
+      />
+    ))}
+  </div>;
+};
 
 
 OffersList.propTypes = {
@@ -51,6 +30,7 @@ OffersList.propTypes = {
     type: PropTypes.string.isRequired,
     isInBookmarks: PropTypes.bool.isRequired,
   })).isRequired,
+  setActiveItem: PropTypes.func.isRequired,
 };
 
 export default OffersList;

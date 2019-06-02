@@ -272,8 +272,8 @@ Array [
           >
             <article
               className="cities__place-card place-card"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -378,8 +378,8 @@ Array [
             </article>
             <article
               className="cities__place-card place-card"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"
@@ -484,8 +484,8 @@ Array [
             </article>
             <article
               className="cities__place-card place-card"
-              onMouseOut={[Function]}
-              onMouseOver={[Function]}
+              onMouseEnter={[Function]}
+              onMouseLeave={[Function]}
             >
               <div
                 className="place-card__mark"

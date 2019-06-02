@@ -9,6 +9,7 @@ it(`should render OffersList correctly`, () => {
   const offersList = renderer.create(
       <OffersList
         offers={offers}
+        setActiveItem={jest.fn()}
       />
   ).toJSON();
 
