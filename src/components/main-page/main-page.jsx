@@ -1,14 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 
 import OffersList from '../offers-list/offers-list.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../map/map.jsx';
 import mapData from '../../mocks/map-data.js';
-import {ActionCreator} from '../../reducer.js';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
-import {initialState} from '../../reducer.js'
+import {initialState} from '../../reducer/cities/cities.js';
+import Offer from '../../types/offer-type.js';
 
 const OffersListWrapper = withActiveItem()(OffersList);
 const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
@@ -91,30 +90,10 @@ const MainPage = (props) => {
 };
 
 MainPage.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    isInBookmarks: PropTypes.bool.isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(Offer).isRequired,
   leaflet: PropTypes.object.isRequired,
   activeCity: PropTypes.string.isRequired,
   handleCityClick: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => Object.assign({}, ownProps, {
-  activeCity: state.city,
-  offers: state.offers.filter((offer) => offer.city === state.city),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  handleCityClick: (city) => dispatch(ActionCreator.changeCity(city)),
-});
-
-export {MainPage};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainPage);
+export default MainPage;

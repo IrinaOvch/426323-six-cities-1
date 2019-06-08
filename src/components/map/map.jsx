@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CITIES from '../../cities';
+import Offer from '../../types/offer-type.js';
 
 class Map extends React.PureComponent {
 
@@ -69,16 +70,7 @@ class Map extends React.PureComponent {
 }
 
 Map.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    isInBookmarks: PropTypes.bool.isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(Offer).isRequired,
   mapData: PropTypes.shape({
     city: PropTypes.arrayOf(PropTypes.number).isRequired,
     zoom: PropTypes.number.isRequired,

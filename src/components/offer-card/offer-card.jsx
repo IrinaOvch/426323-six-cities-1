@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Offer from "../../types/offer-type.js";
 
 class OfferCard extends React.PureComponent {
 
@@ -73,16 +74,7 @@ class OfferCard extends React.PureComponent {
 }
 
 OfferCard.propTypes = {
-  offer: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    isInBookmarks: PropTypes.bool.isRequired,
-  }).isRequired,
+  offer: Offer.isRequired,
   onOfferImageClick: PropTypes.func.isRequired,
   onOfferTitleClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
