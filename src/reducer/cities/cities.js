@@ -1,8 +1,9 @@
-import offers from './mocks/offers.js';
-
 const initialState = {
   city: `Paris`,
-  offers,
+};
+
+const ActionType = {
+  CHANGE_CITY: `CHANGE_CITY`,
 };
 
 const ActionCreator = {
@@ -17,13 +18,14 @@ const reducer = (state = initialState, action) => {
     case `CHANGE_CITY`: return Object.assign({}, state, {
       city: action.payload,
     });
-
-    default: return state;
   }
+
+  return state;
 };
 
 export {
   ActionCreator,
+  ActionType,
   reducer,
   initialState,
 };

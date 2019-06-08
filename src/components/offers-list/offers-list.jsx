@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import OfferCard from "../offer-card/offer-card.jsx";
+import Offer from "../../types/offer-type.js";
 
 const OffersList = (props) => {
   const {offers, setActiveItem} = props;
@@ -20,16 +21,7 @@ const OffersList = (props) => {
 
 
 OffersList.propTypes = {
-  offers: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-    isPremium: PropTypes.bool.isRequired,
-    rating: PropTypes.number.isRequired,
-    type: PropTypes.string.isRequired,
-    isInBookmarks: PropTypes.bool.isRequired,
-  })).isRequired,
+  offers: PropTypes.arrayOf(Offer).isRequired,
   setActiveItem: PropTypes.func.isRequired,
 };
 

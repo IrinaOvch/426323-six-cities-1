@@ -103,7 +103,7 @@ exports[`should render OfferCard correctly 1`] = `
     <p
       className="place-card__type"
     >
-      Apartment
+      apartment
     </p>
   </div>
 </article>
