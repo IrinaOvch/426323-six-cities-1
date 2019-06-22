@@ -12,7 +12,8 @@ it(`should render MainPage correctly`, () => {
         leaflet={leaflet}
         onOfferTitleClick={jest.fn()}
         activeCity={`Paris`}
-        handleCityClick={jest.fn()}
+        onCityClick={jest.fn()}
+        onSignInClick={jest.fn()}
       />
   ).toJSON();
 

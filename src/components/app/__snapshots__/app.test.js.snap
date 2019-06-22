@@ -77,15 +77,17 @@ Array [
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                href="#"
+                onClick={[MockFunction]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"
-                />
-                <span
-                  className="header__user-name user__name"
                 >
-                  Oliver.conner@gmail.com
+                  
+                </div>
+                <span
+                  className="header__login"
+                >
+                  Sign in
                 </span>
               </a>
             </li>

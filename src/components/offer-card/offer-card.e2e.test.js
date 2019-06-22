@@ -14,13 +14,13 @@ it(`should call callback when clicking on offer image`, () => {
   const handleMouseOut = jest.fn();
 
   const card = mount(
-    <OfferCard
-      offer={offers[0]}
-      onOfferTitleClick={handleOfferTitleClick}
-      onOfferImageClick={handleOfferImageClick}
-      onMouseEnter={handleMouseOver}
-      onMouseLeave={handleMouseOut}
-    />
+      <OfferCard
+        offer={offers[0]}
+        onOfferTitleClick={handleOfferTitleClick}
+        onOfferImageClick={handleOfferImageClick}
+        onMouseEnter={handleMouseOver}
+        onMouseLeave={handleMouseOut}
+      />
   );
 
   card.find(`.cities__image-wrapper > a`).simulate(`click`);
@@ -34,13 +34,13 @@ it(`should pass correct data to callback`, () => {
   const handleMouseOut = jest.fn();
 
   const card = mount(
-    <OfferCard
-      offer={offers[0]}
-      onOfferTitleClick={handleOfferTitleClick}
-      onOfferImageClick={handleOfferImageClick}
-      onMouseEnter={handleMouseOver}
-      onMouseLeave={handleMouseOut}
-    />
+      <OfferCard
+        offer={offers[0]}
+        onOfferTitleClick={handleOfferTitleClick}
+        onOfferImageClick={handleOfferImageClick}
+        onMouseEnter={handleMouseOver}
+        onMouseLeave={handleMouseOut}
+      />
   );
 
   card.find(`.cities__image-wrapper > a`).simulate(`click`);

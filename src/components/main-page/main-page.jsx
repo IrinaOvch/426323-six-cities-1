@@ -8,12 +8,15 @@ import mapData from '../../mocks/map-data.js';
 import withActiveItem from '../../hocs/withActiveItem.jsx';
 import {initialState} from '../../reducer/cities/cities.js';
 import Offer from '../../types/offer-type.js';
+import {BASE_URL} from '../../api.js';
 
 const OffersListWrapper = withActiveItem()(OffersList);
 const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
 
 const MainPage = (props) => {
-  const {offers, leaflet, activeCity, handleCityClick} = props;
+  const {offers, leaflet, activeCity, onCityClick, userProfile, onSignInClick} = props;
+
+  const isLoggedIn = Boolean(userProfile);
   return (
   <>
     <div style={{display: `none`}}>
@@ -31,10 +34,11 @@ const MainPage = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" href="#">
+                <a className="header__nav-link header__nav-link--profile" onClick={!isLoggedIn ? onSignInClick : undefined}>
                   <div className="header__avatar-wrapper user__avatar-wrapper">
+                    {isLoggedIn && userProfile.avatarUrl ? <img className="user__avatar" src={`${BASE_URL}${userProfile.avatarUrl}`}/> : ``}
                   </div>
-                  <span className="header__user-name user__name">Oliver.conner@gmail.com</span>
+                  {isLoggedIn && userProfile.email ? <span className="header__user-name user__name">{userProfile.email}</span> : <span className="header__login">Sign in</span>}
                 </a>
               </li>
             </ul>
@@ -47,7 +51,7 @@ const MainPage = (props) => {
       <h1 className="visually-hidden">Cities</h1>
       <div className="cities tabs">
         <CitiesListWrapper
-          handleCityClick={handleCityClick}
+          onCityClick={onCityClick}
         />
       </div>
       <div className="cities__places-wrapper">
@@ -93,7 +97,15 @@ MainPage.propTypes = {
   offers: PropTypes.arrayOf(Offer).isRequired,
   leaflet: PropTypes.object.isRequired,
   activeCity: PropTypes.string.isRequired,
-  handleCityClick: PropTypes.func.isRequired,
+  onCityClick: PropTypes.func.isRequired,
+  userProfile: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    isPro: PropTypes.bool.isRequired,
+  }),
+  onSignInClick: PropTypes.func.isRequired,
 };
 
 export default MainPage;
