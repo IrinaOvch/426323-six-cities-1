@@ -14,7 +14,8 @@ import {createAPI} from '../../api.js';
 const mock = {
   offers,
   activeCity: `Paris`,
-  handleCityClick: jest.fn()
+  onCityClick: jest.fn(),
+  onSignInClick: jest.fn(),
 };
 
 it(`should render App correctly`, () => {
@@ -27,7 +28,9 @@ it(`should render App correctly`, () => {
       leaflet={leaflet}
       offers={mock.offers}
       activeCity={mock.activeCity}
-      handleCityClick={mock.handleCityClick}
+      onCityClick={mock.onCityClick}
+      isAuthorizationRequired={false}
+      onSignInClick={mock.onSignInClick}
     />
   </Provider>)
   .toJSON();

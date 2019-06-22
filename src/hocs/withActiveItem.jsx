@@ -8,10 +8,10 @@ const withActiveItem = (initialItem) => (Component) => {
       this.state = {
         activeItem: initialItem,
       };
-      this.setActiveItem = this.setActiveItem.bind(this);
+      this.handleActiveItemSet = this.handleActiveItemSet.bind(this);
     }
 
-    setActiveItem(newActiveItem) {
+    handleActiveItemSet(newActiveItem) {
       this.setState({
         activeItem: newActiveItem
       });
@@ -20,7 +20,7 @@ const withActiveItem = (initialItem) => (Component) => {
       return <Component
         {...this.props}
         activeItem={this.state.activeItem}
-        setActiveItem={this.setActiveItem}
+        handleActiveItemSet={this.handleActiveItemSet}
       />;
     }
   }

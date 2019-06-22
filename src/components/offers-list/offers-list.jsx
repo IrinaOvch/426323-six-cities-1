@@ -5,15 +5,15 @@ import OfferCard from "../offer-card/offer-card.jsx";
 import Offer from "../../types/offer-type.js";
 
 const OffersList = (props) => {
-  const {offers, setActiveItem} = props;
+  const {offers, handleActiveItemSet} = props;
 
   return <div className="cities__places-list places__list tabs__content">
     {offers.map((offer, idx) => (
       <OfferCard
         offer={offer}
         key={idx}
-        onMouseEnter={setActiveItem}
-        onMouseLeave={setActiveItem}
+        onMouseEnter={handleActiveItemSet}
+        onMouseLeave={handleActiveItemSet}
       />
     ))}
   </div>;
@@ -22,7 +22,7 @@ const OffersList = (props) => {
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(Offer).isRequired,
-  setActiveItem: PropTypes.func.isRequired,
+  handleActiveItemSet: PropTypes.func.isRequired,
 };
 
 export default OffersList;

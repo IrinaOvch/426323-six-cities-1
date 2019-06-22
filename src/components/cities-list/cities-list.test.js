@@ -7,8 +7,8 @@ it(`should render CitiesList correctly`, () => {
   const page = renderer.create(
       <CitiesList
         activeItem={`Paris`}
-        handleCityClick={jest.fn()}
-        setActiveItem={jest.fn()}
+        onCityClick={jest.fn()}
+        handleActiveItemSet={jest.fn()}
       />
   ).toJSON();
 

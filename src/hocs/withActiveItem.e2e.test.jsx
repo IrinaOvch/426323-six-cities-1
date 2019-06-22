@@ -14,6 +14,6 @@ it(`should test withActiveItem HOC`, () => {
 
   expect(component.state().activeItem).toEqual(``);
 
-  component.props().setActiveItem(`test`);
+  component.props().handleActiveItemSet(`test`);
   expect(component.state().activeItem).toEqual(`test`);
 });

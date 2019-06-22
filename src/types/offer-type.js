@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 export default PropTypes.shape({
   city: PropTypes.string.isRequired,
-  img: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   images: PropTypes.arrayOf(PropTypes.string.isRequired),
   title: PropTypes.string.isRequired,
   isInBookmarks: PropTypes.bool.isRequired,
