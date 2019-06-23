@@ -77,7 +77,8 @@ Array [
             >
               <a
                 className="header__nav-link header__nav-link--profile"
-                onClick={[MockFunction]}
+                href="/login"
+                onClick={[Function]}
               >
                 <div
                   className="header__avatar-wrapper user__avatar-wrapper"

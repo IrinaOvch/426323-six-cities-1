@@ -7,18 +7,25 @@ import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.
 import {ActionCreator as AuthActionCreator} from '../../reducer/auth/auth.js';
 import {getCityOffers, getCity, getUserProfile, getAuthorizationRequirement} from '../../reducer/selectors.js';
 import SignIn from '../sign-in/sign-in.jsx';
+import {Switch, Route} from 'react-router-dom';
+import withAuth from '../../hocs/with-auth/with-auth.jsx';
+import Favorites from '../favorites/favorites.jsx';
 
 const App = (props) => {
-  const {offers, leaflet, activeCity, onCityClick, isAuthorizationRequired, userProfile, onSignInClick} = props;
+  const {offers, leaflet, activeCity, onCityClick, userProfile, onSignInClick} = props;
 
-  return isAuthorizationRequired ? <SignIn/> : <MainPage
-    leaflet={leaflet}
-    offers={offers}
-    activeCity={activeCity}
-    onCityClick={onCityClick}
-    userProfile={userProfile}
-    onSignInClick={onSignInClick}
-  />;
+  return <Switch>
+    <Route exact path="/" render={() => <MainPage
+      leaflet={leaflet}
+      offers={offers}
+      activeCity={activeCity}
+      onCityClick={onCityClick}
+      userProfile={userProfile}
+      onSignInClick={onSignInClick}
+    />}></Route>
+    <Route path="/login" component={SignIn}></Route>
+    <Route path="/favorites" component={withAuth(userProfile)(Favorites)}></Route>
+  </Switch>;
 };
 
 App.propTypes = {

@@ -4,6 +4,7 @@ import renderer from 'react-test-renderer';
 import {App} from './app.jsx';
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
+import {MemoryRouter} from 'react-router-dom';
 
 import offers from '../../mocks/offers.js';
 import leaflet from '../../mocks/leaflet.js';
@@ -24,14 +25,16 @@ it(`should render App correctly`, () => {
   store.dispatch(Operation.loadOffers());
   const tree = renderer
   .create(<Provider store={store}>
-    <App
-      leaflet={leaflet}
-      offers={mock.offers}
-      activeCity={mock.activeCity}
-      onCityClick={mock.onCityClick}
-      isAuthorizationRequired={false}
-      onSignInClick={mock.onSignInClick}
-    />
+    <MemoryRouter>
+      <App
+        leaflet={leaflet}
+        offers={mock.offers}
+        activeCity={mock.activeCity}
+        onCityClick={mock.onCityClick}
+        isAuthorizationRequired={false}
+        onSignInClick={mock.onSignInClick}
+      />
+    </MemoryRouter>
   </Provider>)
   .toJSON();
 
