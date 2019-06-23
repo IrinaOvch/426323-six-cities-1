@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 import OffersList from '../offers-list/offers-list.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../map/map.jsx';
 import mapData from '../../mocks/map-data.js';
-import withActiveItem from '../../hocs/withActiveItem.jsx';
+import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import {initialState} from '../../reducer/cities/cities.js';
 import Offer from '../../types/offer-type.js';
 import {BASE_URL} from '../../api.js';
@@ -14,7 +15,7 @@ const OffersListWrapper = withActiveItem()(OffersList);
 const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
 
 const MainPage = (props) => {
-  const {offers, leaflet, activeCity, onCityClick, userProfile, onSignInClick} = props;
+  const {offers, leaflet, activeCity, onCityClick, userProfile} = props;
 
   const isLoggedIn = Boolean(userProfile);
   return (
@@ -34,12 +35,12 @@ const MainPage = (props) => {
           <nav className="header__nav">
             <ul className="header__nav-list">
               <li className="header__nav-item user">
-                <a className="header__nav-link header__nav-link--profile" onClick={!isLoggedIn ? onSignInClick : undefined}>
+                <Link className="header__nav-link header__nav-link--profile" to={`/login`}>
                   <div className="header__avatar-wrapper user__avatar-wrapper">
                     {isLoggedIn && userProfile.avatarUrl ? <img className="user__avatar" src={`${BASE_URL}${userProfile.avatarUrl}`}/> : ``}
                   </div>
                   {isLoggedIn && userProfile.email ? <span className="header__user-name user__name">{userProfile.email}</span> : <span className="header__login">Sign in</span>}
-                </a>
+                </Link>
               </li>
             </ul>
           </nav>

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 import leaflet from 'leaflet';
 import thunk from 'redux-thunk';
 import {compose} from 'recompose';
+import {BrowserRouter} from 'react-router-dom';
 
 
 import App from './components/app/app.jsx';
@@ -24,9 +25,11 @@ const init = () => {
   );
   store.dispatch(Operation.loadOffers());
   ReactDOM.render(<Provider store={store}>
-    <App
-      leaflet={leaflet}
-    />
+    <BrowserRouter>
+      <App
+        leaflet={leaflet}
+      />
+    </BrowserRouter>
   </Provider>,
   document.getElementById(`root`)
   );

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
 
 import {Operation} from '../../reducer/auth/auth.js';
-import {connect} from 'react-redux';
-import {getCity} from '../../reducer/selectors.js';
+import {getCity, getUserProfile} from '../../reducer/selectors.js';
 
 class SignIn extends React.PureComponent {
   constructor(props) {
@@ -31,6 +32,10 @@ class SignIn extends React.PureComponent {
     this.props.onLogin(this.state.email, this.state.password);
   }
   render() {
+    const isLoggedIn = Boolean(this.props.userProfile);
+    if (isLoggedIn) {
+      return <Redirect to={`/`} />;
+    }
     return (
       <main className="page__main page__main--login">
         <div className="page__login-container container">
@@ -64,10 +69,20 @@ class SignIn extends React.PureComponent {
 SignIn.propTypes = {
   onLogin: PropTypes.func.isRequired,
   activeCity: PropTypes.string.isRequired,
+  userProfile: PropTypes.shape({
+    id: PropTypes.number.isRequired,
+    email: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string.isRequired,
+    isPro: PropTypes.bool.isRequired,
+  }),
 };
 
 const mapStateToProps = (state, ownProps) =>
-  (Object.assign({}, ownProps, {activeCity: getCity(state)}));
+  (Object.assign({}, ownProps, {
+    activeCity: getCity(state),
+    userProfile: getUserProfile(state),
+  }));
 
 const mapDispatchToProps = (dispatch) => ({
   onLogin: (email, password) => dispatch(Operation.login(email, password)),
