@@ -15,6 +15,10 @@ const getOffers = (state) => {
   return state[NAME_SPACE_DATA].offers;
 };
 
+export const getOffer = (state, offerId) => {
+  return getOffers(state).find((offer) => offer.id === offerId) || {};
+};
+
 export const getCityOffers = createSelector(
     getCity,
     getOffers,

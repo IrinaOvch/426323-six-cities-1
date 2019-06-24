@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Offer from "../../types/offer-type.js";
+import {Link} from 'react-router-dom';
 
 class OfferCard extends React.PureComponent {
 
@@ -10,6 +11,7 @@ class OfferCard extends React.PureComponent {
     this.handleMouseOver = this.handleMouseOver.bind(this);
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.handleOfferImageClick = this.handleOfferImageClick.bind(this);
+    this.handleOfferTitleClick = this.handleOfferTitleClick.bind(this);
   }
 
   handleMouseOver() {
@@ -24,9 +26,13 @@ class OfferCard extends React.PureComponent {
     this.props.onOfferImageClick(this.props.offer);
   }
 
+  handleOfferTitleClick() {
+    this.props.onOfferTitleClick(this.props.offer);
+  }
+
 
   render() {
-    const {offer, onOfferTitleClick} = this.props;
+    const {offer} = this.props;
 
     return <article
       className="cities__place-card place-card"
@@ -64,7 +70,7 @@ class OfferCard extends React.PureComponent {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#" onClick={onOfferTitleClick}>{offer.title}</a>
+          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>

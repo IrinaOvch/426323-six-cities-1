@@ -10,6 +10,7 @@ import SignIn from '../sign-in/sign-in.jsx';
 import {Switch, Route} from 'react-router-dom';
 import withAuth from '../../hocs/with-auth/with-auth.jsx';
 import Favorites from '../favorites/favorites.jsx';
+import OfferCardDetailed from '../offer-card-detailed/offer-card-detailed.jsx';
 
 const App = (props) => {
   const {offers, leaflet, activeCity, onCityClick, userProfile, onSignInClick} = props;
@@ -25,6 +26,7 @@ const App = (props) => {
     />}></Route>
     <Route path="/login" component={SignIn}></Route>
     <Route path="/favorites" component={withAuth(userProfile)(Favorites)}></Route>
+    <Route path="/offer/:id" component={OfferCardDetailed}></Route>
   </Switch>;
 };
 
