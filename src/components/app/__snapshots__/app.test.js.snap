@@ -366,7 +366,7 @@ Array [
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/1"
                     onClick={[Function]}
                   >
                     Beautiful & luxurious studio at great location
@@ -465,7 +465,7 @@ Array [
                   className="place-card__name"
                 >
                   <a
-                    href="#"
+                    href="/offer/11"
                     onClick={[Function]}
                   >
                     Nice, cozy, warm big bed apartment

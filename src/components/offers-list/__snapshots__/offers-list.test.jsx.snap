@@ -97,7 +97,7 @@ exports[`should render OffersList correctly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/1"
           onClick={[Function]}
         >
           Beautiful & luxurious studio at great location
@@ -196,7 +196,7 @@ exports[`should render OffersList correctly 1`] = `
         className="place-card__name"
       >
         <a
-          href="#"
+          href="/offer/11"
           onClick={[Function]}
         >
           Nice, cozy, warm big bed apartment
