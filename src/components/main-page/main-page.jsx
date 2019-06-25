@@ -83,6 +83,7 @@ const MainPage = (props) => {
               activeCity={activeCity}
               offers={offers}
               leaflet={leaflet}
+              className={`cities`}
             />
           </div>
         </div>

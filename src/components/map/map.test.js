@@ -8,12 +8,13 @@ import leaflet from '../../mocks/leaflet.js';
 
 it(`should render map correctly`, () => {
   const map = renderer.create(
-    <Map
-      offers={offers}
-      mapData={mapData}
-      leaflet={leaflet}
-      activeCity={`Paris`}
-    />
+      <Map
+        offers={offers}
+        mapData={mapData}
+        leaflet={leaflet}
+        activeCity={`Paris`}
+        className={`property`}
+      />
   ).toJSON();
 
   expect(map).toMatchSnapshot();

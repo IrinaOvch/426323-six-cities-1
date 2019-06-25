@@ -26,7 +26,14 @@ const App = (props) => {
     />}></Route>
     <Route path="/login" component={SignIn}></Route>
     <Route path="/favorites" component={withAuth(userProfile)(Favorites)}></Route>
-    <Route path="/offer/:id" component={OfferCardDetailed}></Route>
+    <Route path="/offer/:id" render={(routeProps) => {
+      return offers.length !== 0 && <OfferCardDetailed
+        {...routeProps}
+        leaflet={leaflet}
+        offers={offers}
+        activeCity={activeCity}
+      />;
+    }}></Route>
   </Switch>;
 };
 

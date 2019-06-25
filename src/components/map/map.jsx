@@ -13,7 +13,7 @@ class Map extends React.PureComponent {
   }
 
   componentDidMount() {
-    const {offers, mapData, leaflet, activeCity} = this.props;
+    const {mapData, leaflet, activeCity} = this.props;
     this.leaflet = leaflet;
     this.map = this.leaflet.map(`map`, {
       center: CITIES[activeCity],
@@ -22,28 +22,27 @@ class Map extends React.PureComponent {
       marker: mapData.isMarker
     });
 
-    this.map.setView(CITIES[activeCity], mapData.zoom);
+    this._buildMap();
+  }
+
+  componentDidUpdate() {
+    this.map.eachLayer((layer) => {
+      this.map.removeLayer(layer);
+    });
+
+    this._buildMap();
+  }
+
+  _buildMap() {
+    const {activeCity, mapData, offers} = this.props;
+    const cityCenter = CITIES[activeCity];
+    const {zoom} = mapData;
 
     this.leaflet
       .tileLayer(`https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png`, {
         attribution: `&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>`
       })
       .addTo(this.map);
-
-    for (const offer of offers) {
-      this._addPin(offer.coordinates);
-    }
-  }
-
-  componentDidUpdate() {
-    const {
-      activeCity,
-      offers,
-      mapData
-    } = this.props;
-    const cityCenter = CITIES[activeCity];
-    const {zoom} = mapData;
-
     this.map.setView(cityCenter, zoom);
     for (const offer of offers) {
       this._addPin(offer.coordinates);
@@ -63,13 +62,14 @@ class Map extends React.PureComponent {
   }
 
   render() {
-    return <section className="cities__map map">
+    return <section className={`${this.props.className}__map map`}>
       <div id="map" style={{height: `100%`}}></div>
     </section>;
   }
 }
 
 Map.propTypes = {
+  className: PropTypes.string.isRequired,
   offers: PropTypes.arrayOf(Offer).isRequired,
   mapData: PropTypes.shape({
     city: PropTypes.arrayOf(PropTypes.number).isRequired,
