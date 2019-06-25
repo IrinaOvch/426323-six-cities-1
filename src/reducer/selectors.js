@@ -15,6 +15,13 @@ const getOffers = (state) => {
   return state[NAME_SPACE_DATA].offers;
 };
 
+export const getReviews = (state, offerId) => {
+  if (!state[NAME_SPACE_DATA].reviews) {
+    return {};
+  }
+  return state[NAME_SPACE_DATA].reviews[offerId];
+};
+
 export const getOffer = (state, offerId) => {
   return getOffers(state).find((offer) => offer.id === offerId) || {};
 };
