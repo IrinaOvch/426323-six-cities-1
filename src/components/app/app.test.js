@@ -16,7 +16,6 @@ const mock = {
   offers,
   activeCity: `Paris`,
   onCityClick: jest.fn(),
-  onSignInClick: jest.fn(),
 };
 
 it(`should render App correctly`, () => {
@@ -31,10 +30,9 @@ it(`should render App correctly`, () => {
         offers={mock.offers}
         activeCity={mock.activeCity}
         onCityClick={mock.onCityClick}
-        isAuthorizationRequired={false}
-        onSignInClick={mock.onSignInClick}
         currentSortType={`Popular`}
         onChangeSortType={jest.fn()}
+        offersRequestLoaded={false}
       />
     </MemoryRouter>
   </Provider>)

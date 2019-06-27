@@ -12,7 +12,8 @@ describe(`Reducer works correctly`, () => {
       type: `LOAD_OFFERS`,
       payload: [`offer`]
     })).toEqual({
-      offers: [`offer`]
+      offers: [`offer`],
+      offersRequestLoaded: true
     });
   });
 });

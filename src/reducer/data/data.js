@@ -3,6 +3,7 @@ import ReviewsParser from '../../utils/review-parser.js';
 
 const initialState = {
   offers: [],
+  offersRequestLoaded: false,
   reviews: {},
   sortType: `Popular`,
   currentOffer: null,
@@ -64,6 +65,7 @@ const reducer = (state = initialState, action) => {
     case ActionType.LOAD_OFFERS:
       return Object.assign({}, state, {
         offers: action.payload,
+        offersRequestLoaded: true,
       });
     case ActionType.LOAD_REVIEWS:
       return Object.assign({}, state, {

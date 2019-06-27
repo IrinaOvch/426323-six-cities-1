@@ -40,10 +40,10 @@ export const getUserProfile = (state) => {
   return state[NAME_SPACE_AUTH].userProfile;
 };
 
-export const getAuthorizationRequirement = (state) => {
-  return state[NAME_SPACE_AUTH].isAuthorizationRequired;
-};
-
 export const getSortType = (state) => {
   return state[NAME_SPACE_DATA].sortType;
+};
+
+export const getOffersRequestLoaded = (state) => {
+  return state[NAME_SPACE_DATA].offersRequestLoaded;
 };
