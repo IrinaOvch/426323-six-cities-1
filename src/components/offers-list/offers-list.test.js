@@ -5,32 +5,24 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 
-
-import MainPage from './main-page.jsx';
+import OffersList from './offers-list.jsx';
 import offers from '../../mocks/offers.js';
-import leaflet from '../../mocks/leaflet.js';
 import {createAPI} from '../../api.js';
 import reducer from '../../reducer/reducer.js';
 
-it(`should render MainPage correctly`, () => {
+it(`should render OffersList correctly`, () => {
   const api = createAPI((...args) => store.dispatch(...args));
   const store = createStore(reducer, applyMiddleware(thunk.withExtraArgument(api)));
-  const page = renderer.create(
+  const offersList = renderer.create(
       <Provider store={store}>
         <MemoryRouter>
-          <MainPage
+          <OffersList
             offers={offers}
-            leaflet={leaflet}
-            onOfferTitleClick={jest.fn()}
-            activeCity={`Paris`}
-            onCityClick={jest.fn()}
-            onSignInClick={jest.fn()}
-            currentSortType={`Popular`}
-            onChangeSortType={jest.fn()}
+            handleActiveItemSet={jest.fn()}
           />
         </MemoryRouter>
       </Provider>
   ).toJSON();
 
-  expect(page).toMatchSnapshot();
+  expect(offersList).toMatchSnapshot();
 });

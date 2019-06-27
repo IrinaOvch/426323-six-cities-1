@@ -20,7 +20,6 @@ exports[`should render OffersList correctly 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
         onClick={[Function]}
       >
         <img
@@ -119,7 +118,6 @@ exports[`should render OffersList correctly 1`] = `
       className="cities__image-wrapper place-card__image-wrapper"
     >
       <a
-        href="#"
         onClick={[Function]}
       >
         <img

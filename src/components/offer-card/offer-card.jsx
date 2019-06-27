@@ -46,7 +46,7 @@ class OfferCard extends React.PureComponent {
       }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#" onClick={this.handleOfferImageClick}>
+        <a onClick={this.handleOfferImageClick}>
           <img className="place-card__image" src={offer.image} width="260" height="200" alt="Place image"/>
         </a>
       </div>
@@ -70,7 +70,7 @@ class OfferCard extends React.PureComponent {
           </div>
         </div>
         <h2 className="place-card__name">
-          <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
+          <Link to={`/offer/${offer.id}`} onClick={this.handleOfferTitleClick}>{offer.title}</Link>
         </h2>
         <p className="place-card__type">{offer.type}</p>
       </div>
@@ -89,7 +89,7 @@ OfferCard.propTypes = {
 
 OfferCard.defaultProps = {
   onOfferTitleClick: () => {},
-  onOfferImageClick: () => {}
+  onOfferImageClick: () => {},
 };
 
 export default OfferCard;

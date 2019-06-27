@@ -5,7 +5,8 @@ import MainPage from '../main-page/main-page.jsx';
 import Offer from '../../types/offer-type.js';
 import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.js';
 import {ActionCreator as AuthActionCreator} from '../../reducer/auth/auth.js';
-import {getCityOffers, getCity, getUserProfile, getAuthorizationRequirement} from '../../reducer/selectors.js';
+import {ActionCreator as DataActionCreator} from '../../reducer/data/data.js';
+import {getCityOffers, getCity, getUserProfile, getAuthorizationRequirement, getSortType} from '../../reducer/selectors.js';
 import SignIn from '../sign-in/sign-in.jsx';
 import {Switch, Route} from 'react-router-dom';
 import withAuth from '../../hocs/with-auth/with-auth.jsx';
@@ -13,7 +14,7 @@ import Favorites from '../favorites/favorites.jsx';
 import OfferCardDetailed from '../offer-card-detailed/offer-card-detailed.jsx';
 
 const App = (props) => {
-  const {offers, leaflet, activeCity, onCityClick, userProfile, onSignInClick} = props;
+  const {offers, leaflet, activeCity, onCityClick, userProfile, onSignInClick, currentSortType, onChangeSortType} = props;
 
   return <Switch>
     <Route exact path="/" render={() => <MainPage
@@ -23,6 +24,8 @@ const App = (props) => {
       onCityClick={onCityClick}
       userProfile={userProfile}
       onSignInClick={onSignInClick}
+      currentSortType={currentSortType}
+      onChangeSortType={onChangeSortType}
     />}></Route>
     <Route path="/login" component={SignIn}></Route>
     <Route path="/favorites" component={withAuth(userProfile)(Favorites)}></Route>
@@ -51,6 +54,8 @@ App.propTypes = {
     isPro: PropTypes.bool.isRequired,
   }),
   onSignInClick: PropTypes.func.isRequired,
+  currentSortType: PropTypes.string.isRequired,
+  onChangeSortType: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -59,12 +64,14 @@ const mapStateToProps = (state, ownProps) => {
     offers: getCityOffers(state),
     isAuthorizationRequired: getAuthorizationRequirement(state),
     userProfile: getUserProfile(state),
+    currentSortType: getSortType(state),
   });
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick: (city) => dispatch(CitiesActionCreator.changeCity(city)),
   onSignInClick: () => dispatch(AuthActionCreator.changeAuthorizationRequirement(true)),
+  onChangeSortType: (sortType) => dispatch(DataActionCreator.changeSortType(sortType))
 });
 
 export {App};

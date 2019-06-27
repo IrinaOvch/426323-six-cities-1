@@ -7,17 +7,28 @@ import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../map/map.jsx';
 import mapData from '../../mocks/map-data.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
+import withDropdown from '../../hocs/with-dropdown/with-dropdown.jsx';
 import {initialState} from '../../reducer/cities/cities.js';
 import Offer from '../../types/offer-type.js';
 import {BASE_URL} from '../../api.js';
+import SortingOptions from '../sorting-options/sorting-options.jsx';
 
 const OffersListWrapper = withActiveItem()(OffersList);
 const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
+const SortingOptionsWrapper = withDropdown(false)(SortingOptions);
+
+const sortingFunctions = {
+  "Popular": (a, b) => a.id - b.id,
+  "Price: low to high": (a, b) => a.price - b.price,
+  "Price: high to low": (a, b) => b.price - a.price,
+  "Top rated first": (a, b) => b.rating - a.rating
+};
 
 const MainPage = (props) => {
-  const {offers, leaflet, activeCity, onCityClick, userProfile} = props;
+  const {offers, leaflet, activeCity, onCityClick, userProfile, currentSortType, onChangeSortType} = props;
 
   const isLoggedIn = Boolean(userProfile);
+  const sortedOffers = offers.sort(sortingFunctions[currentSortType]);
   return (
   <>
     <div style={{display: `none`}}>
@@ -60,22 +71,8 @@ const MainPage = (props) => {
           <section className="cities__places places">
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-            <form className="places__sorting" action="#" method="get">
-              <span className="places__sorting-caption">Sort by</span>
-              <span className="places__sorting-type" tabIndex="0">
-                  Popular
-                <svg className="places__sorting-arrow" width="7" height="4">
-                  <use xlinkHref="#icon-arrow-select"></use>
-                </svg>
-              </span>
-              <ul className="places__options places__options--custom places__options--opened">
-                <li className="places__option places__option--active" tabIndex="0">Popular</li>
-                <li className="places__option" tabIndex="0">Price: low to high</li>
-                <li className="places__option" tabIndex="0">Price: high to low</li>
-                <li className="places__option" tabIndex="0">Top rated first</li>
-              </ul>
-            </form>
-            <OffersListWrapper offers={offers}/>
+            <SortingOptionsWrapper currentSortType={currentSortType} onSelect={onChangeSortType}/>
+            <OffersListWrapper offers={sortedOffers}/>
           </section>
           <div className="cities__right-section">
             <Map
@@ -108,6 +105,8 @@ MainPage.propTypes = {
     isPro: PropTypes.bool.isRequired,
   }),
   onSignInClick: PropTypes.func.isRequired,
+  currentSortType: PropTypes.string.isRequired,
+  onChangeSortType: PropTypes.func.isRequired
 };
 
 export default MainPage;
