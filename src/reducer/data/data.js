@@ -4,11 +4,15 @@ import ReviewsParser from '../../utils/review-parser.js';
 const initialState = {
   offers: [],
   reviews: {},
+  sortType: `Popular`,
+  currentOffer: null,
 };
 
 const ActionType = {
   LOAD_OFFERS: `LOAD_OFFERS`,
-  LOAD_REVIEWS: `LOAD_REVIEWS`
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
+  CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
+  CHANGE_CURRENT_OFFER: `CHANGE_CURRENT_OFFER`,
 };
 
 const ActionCreator = {
@@ -24,6 +28,18 @@ const ActionCreator = {
       payload: {reviews, offerId},
     };
   },
+  changeSortType: (sortType) => {
+    return {
+      type: ActionType.CHANGE_SORT_TYPE,
+      payload: sortType,
+    };
+  },
+  changeCurrentOffer: (currentOffer) => {
+    return {
+      type: ActionType.CHANGE_CURRENT_OFFER,
+      payload: currentOffer,
+    };
+  }
 };
 
 const Operation = {
@@ -54,6 +70,14 @@ const reducer = (state = initialState, action) => {
         reviews: Object.assign({}, state.reviews, {
           [action.payload.offerId]: action.payload.reviews
         }),
+      });
+    case ActionType.CHANGE_SORT_TYPE:
+      return Object.assign({}, state, {
+        sortType: action.payload,
+      });
+    case ActionType.CHANGE_CURRENT_OFFER:
+      return Object.assign({}, state, {
+        currentOffer: action.payload,
       });
   }
   return state;

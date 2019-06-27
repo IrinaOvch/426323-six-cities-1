@@ -33,6 +33,8 @@ it(`should render App correctly`, () => {
         onCityClick={mock.onCityClick}
         isAuthorizationRequired={false}
         onSignInClick={mock.onSignInClick}
+        currentSortType={`Popular`}
+        onChangeSortType={jest.fn()}
       />
     </MemoryRouter>
   </Provider>)

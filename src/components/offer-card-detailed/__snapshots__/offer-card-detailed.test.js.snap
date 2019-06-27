@@ -417,7 +417,6 @@ exports[`should render OfferCardDetailed correctly 1`] = `
               className="cities__image-wrapper place-card__image-wrapper"
             >
               <a
-                href="#"
                 onClick={[Function]}
               >
                 <img

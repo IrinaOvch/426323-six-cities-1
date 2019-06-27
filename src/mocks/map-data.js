@@ -4,5 +4,6 @@ export default {
   isZoom: false,
   isMarker: true,
   iconUrl: `img/pin-02.svg`,
+  iconUrlCurrent: `img/pin-orange.svg`,
   iconSize: [30, 30],
 };

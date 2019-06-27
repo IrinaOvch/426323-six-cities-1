@@ -26,6 +26,10 @@ export const getOffer = (state, offerId) => {
   return getOffers(state).find((offer) => offer.id === offerId) || {};
 };
 
+export const getCurrentOffer = (state) => {
+  return state[NAME_SPACE_DATA].currentOffer;
+};
+
 export const getCityOffers = createSelector(
     getCity,
     getOffers,
@@ -38,4 +42,8 @@ export const getUserProfile = (state) => {
 
 export const getAuthorizationRequirement = (state) => {
   return state[NAME_SPACE_AUTH].isAuthorizationRequired;
+};
+
+export const getSortType = (state) => {
+  return state[NAME_SPACE_DATA].sortType;
 };
