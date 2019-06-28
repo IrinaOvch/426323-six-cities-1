@@ -25,6 +25,8 @@ it(`should render OfferCardDetailed correctly`, () => {
             updateActiveCity={jest.fn()}
             activeCity={`Paris`}
             leaflet={leaflet}
+            isLoggedIn={true}
+            sendReview={jest.fn()}
           />
         </MemoryRouter>
       </Provider>

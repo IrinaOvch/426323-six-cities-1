@@ -32,9 +32,12 @@ class SignIn extends React.PureComponent {
     this.props.onLogin(this.state.email, this.state.password);
   }
   render() {
+    const {location} = this.props;
     const isLoggedIn = Boolean(this.props.userProfile);
+
     if (isLoggedIn) {
-      return <Redirect to={`/`} />;
+      const pathName = location.state && location.state.previousPage ? location.state.previousPage : `/`;
+      return <Redirect to={pathName} />;
     }
     return (
       <main className="page__main page__main--login">
@@ -76,6 +79,9 @@ SignIn.propTypes = {
     avatarUrl: PropTypes.string.isRequired,
     isPro: PropTypes.bool.isRequired,
   }),
+  location: PropTypes.shape({
+    pathname: PropTypes.string.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

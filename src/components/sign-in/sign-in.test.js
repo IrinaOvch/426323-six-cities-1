@@ -9,6 +9,7 @@ it(`should render SignIn correctly`, () => {
       <SignIn
         onLogin={jest.fn()}
         activeCity={`Paris`}
+        location={{pathname: ``}}
       />
   ).toJSON();
 
