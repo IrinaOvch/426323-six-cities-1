@@ -57,6 +57,18 @@ const Operation = {
           return ReviewsParser.parseReview(review);
         }), offerId}));
       });
+  },
+  sendReview: (offerId, rating, comment) => (dispatch, _getState, api) => {
+    return api.post(`/comments/${offerId}`, {
+      rating,
+      comment,
+    }
+    )
+      .then((response) => {
+        dispatch(ActionCreator.loadReviews({reviews: response.data.map((review) => {
+          return ReviewsParser.parseReview(review);
+        }), offerId}));
+      });
   }
 };
 

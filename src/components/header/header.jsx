@@ -11,14 +11,17 @@ const Header = ({userProfile}) => {
     <div className="container">
       <div className="header__wrapper">
         <div className="header__left">
-          <a className="header__logo-link header__logo-link--active">
+          <Link className="header__logo-link header__logo-link--active" to={`/`}>
             <img className="header__logo" src="img/logo.svg" alt="6 cities logo" width="81" height="41"/>
-          </a>
+          </Link>
         </div>
         <nav className="header__nav">
           <ul className="header__nav-list">
             <li className="header__nav-item user">
-              <Link className="header__nav-link header__nav-link--profile" to={`/login`}>
+              <Link className="header__nav-link header__nav-link--profile" to={{
+                pathname: `/login`,
+                state: {previousPage: window.location.pathname}
+              }}>
                 <div className="header__avatar-wrapper user__avatar-wrapper">
                   {isLoggedIn && userProfile.avatarUrl ? <img className="user__avatar" src={`${BASE_URL}${userProfile.avatarUrl}`}/> : ``}
                 </div>
