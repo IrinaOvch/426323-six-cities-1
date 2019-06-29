@@ -330,6 +330,7 @@ Array [
                   </div>
                   <button
                     className="place-card__bookmark-button button "
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg
@@ -428,6 +429,7 @@ Array [
                   </div>
                   <button
                     className="place-card__bookmark-button button "
+                    onClick={[Function]}
                     type="button"
                   >
                     <svg

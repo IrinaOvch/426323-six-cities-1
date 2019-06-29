@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import OfferCard from "../offer-card/offer-card.jsx";
 import Offer from "../../types/offer-type.js";
 import {getCurrentOffer} from '../../reducer/selectors.js';
-import {ActionCreator} from '../../reducer/data/data.js';
+import {ActionCreator, Operation} from '../../reducer/data/data.js';
 
 class OffersList extends React.PureComponent {
   constructor(props) {
@@ -13,6 +13,7 @@ class OffersList extends React.PureComponent {
 
     this.handleOfferImageClick = this.handleOfferImageClick.bind(this);
     this.handleOfferTitleClick = this.handleOfferTitleClick.bind(this);
+    this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
   }
 
   handleOfferImageClick(offer) {
@@ -21,6 +22,10 @@ class OffersList extends React.PureComponent {
 
   handleOfferTitleClick() {
     this.props.onChangeCurrentOffer(null);
+  }
+
+  handleBookmarkClick(offerId, status) {
+    this.props.updateFavorite(offerId, status);
   }
 
 
@@ -35,6 +40,7 @@ class OffersList extends React.PureComponent {
           onMouseLeave={handleActiveItemSet}
           onOfferImageClick={this.handleOfferImageClick}
           onOfferTitleClick={this.handleOfferTitleClick}
+          onBookmarkClick={this.handleBookmarkClick}
         />
       ))}
     </div>;
@@ -45,6 +51,7 @@ OffersList.propTypes = {
   offers: PropTypes.arrayOf(Offer).isRequired,
   handleActiveItemSet: PropTypes.func.isRequired,
   onChangeCurrentOffer: PropTypes.func.isRequired,
+  updateFavorite: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -55,6 +62,7 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => ({
   onChangeCurrentOffer: (currentOffer) => dispatch(ActionCreator.changeCurrentOffer(currentOffer)),
+  updateFavorite: (offerId, status) => dispatch(Operation.updateFavorite(offerId, status)),
 });
 
 export {OffersList};

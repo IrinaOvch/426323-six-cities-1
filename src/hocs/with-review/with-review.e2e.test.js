@@ -36,7 +36,7 @@ it(`should test withReview HOC submit`, () => {
   expect(component.state().comment).toEqual(``);
 
 });
-it('should test if submit is disabled', () => {
+it(`should test if submit is disabled`, () => {
   const sendReview = jest.fn();
   const component = shallow(<WithReview sendReview={sendReview}/>);
 

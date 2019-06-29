@@ -13,6 +13,7 @@ it(`should call callback when clicking on offer image`, () => {
   const handleOfferImageClick = jest.fn();
   const handleMouseOver = jest.fn();
   const handleMouseOut = jest.fn();
+  const onBookmarkClickHandler = jest.fn();
 
   const card = mount(
       <MemoryRouter>
@@ -22,6 +23,7 @@ it(`should call callback when clicking on offer image`, () => {
           onOfferImageClick={handleOfferImageClick}
           onMouseEnter={handleMouseOver}
           onMouseLeave={handleMouseOut}
+          onBookmarkClick={onBookmarkClickHandler}
         />
       </MemoryRouter>
   );
@@ -35,6 +37,7 @@ it(`should pass correct data to callback`, () => {
   const handleOfferImageClick = jest.fn();
   const handleMouseOver = jest.fn();
   const handleMouseOut = jest.fn();
+  const onBookmarkClickHandler = jest.fn();
 
   const card = mount(
       <MemoryRouter>
@@ -44,6 +47,7 @@ it(`should pass correct data to callback`, () => {
           onOfferImageClick={handleOfferImageClick}
           onMouseEnter={handleMouseOver}
           onMouseLeave={handleMouseOut}
+          onBookmarkClick={onBookmarkClickHandler}
         />
       </MemoryRouter>
   );
