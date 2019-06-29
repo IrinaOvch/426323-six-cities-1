@@ -22,15 +22,17 @@ const Operation = {
       password,
     })
       .then((response) => {
-
         dispatch(ActionCreator.updateUserProfile(ProfileParser.parseProfile(response.data)));
-        // const initialExpires = new Date(response.headers.expires);
-        // const expires = new Date(initialExpires.getTime + 5 * 60000);
-        // localStorage.setItem(`expires`, expires);
       }).catch(() => {
         // handle error
       });
   },
+  getLogin: () => (dispatch, _getState, api) => {
+    return api.get(`/login`)
+      .then((response) => {
+        dispatch(ActionCreator.updateUserProfile(ProfileParser.parseProfile(response.data)));
+      });
+  }
 };
 
 const reducer = (state = initialState, action) => {

@@ -11,6 +11,7 @@ it(`should render OfferCard correctly`, () => {
   const onImageClickHandler = jest.fn();
   const mouseOverHandler = jest.fn();
   const mouseLeaveHandler = jest.fn();
+  const onBookmarkClickHandler = jest.fn();
 
   const card = renderer.create(
       <MemoryRouter>
@@ -20,6 +21,7 @@ it(`should render OfferCard correctly`, () => {
           onOfferImageClick={onImageClickHandler}
           onMouseEnter={mouseOverHandler}
           onMouseLeave={mouseLeaveHandler}
+          onBookmarkClick={onBookmarkClickHandler}
         />
       </MemoryRouter>
   ).toJSON();

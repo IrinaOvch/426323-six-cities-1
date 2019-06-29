@@ -14,6 +14,7 @@ const ActionType = {
   LOAD_REVIEWS: `LOAD_REVIEWS`,
   CHANGE_SORT_TYPE: `CHANGE_SORT_TYPE`,
   CHANGE_CURRENT_OFFER: `CHANGE_CURRENT_OFFER`,
+  UPDATE_OFFER: `UPDATE_OFFER`,
 };
 
 const ActionCreator = {
@@ -39,6 +40,12 @@ const ActionCreator = {
     return {
       type: ActionType.CHANGE_CURRENT_OFFER,
       payload: currentOffer,
+    };
+  },
+  updateOffer: (offer) => {
+    return {
+      type: ActionType.UPDATE_OFFER,
+      payload: offer,
     };
   }
 };
@@ -69,6 +76,12 @@ const Operation = {
           return ReviewsParser.parseReview(review);
         }), offerId}));
       });
+  },
+  updateFavorite: (offerId, status) => (dispatch, _getState, api) => {
+    return api.post(`/favorite/${offerId}/${status}`)
+      .then((response) => {
+        dispatch(ActionCreator.updateOffer(OffersParser.parseOffer(response.data)));
+      });
   }
 };
 
@@ -92,6 +105,10 @@ const reducer = (state = initialState, action) => {
     case ActionType.CHANGE_CURRENT_OFFER:
       return Object.assign({}, state, {
         currentOffer: action.payload,
+      });
+    case ActionType.UPDATE_OFFER:
+      return Object.assign({}, state, {
+        offers: state.offers.map((offer) => (offer.id === action.payload.id ? action.payload : offer))
       });
   }
   return state;

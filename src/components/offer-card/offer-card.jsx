@@ -12,6 +12,7 @@ class OfferCard extends React.PureComponent {
     this.handleMouseOut = this.handleMouseOut.bind(this);
     this.handleOfferImageClick = this.handleOfferImageClick.bind(this);
     this.handleOfferTitleClick = this.handleOfferTitleClick.bind(this);
+    this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
   }
 
   handleMouseOver() {
@@ -28,6 +29,11 @@ class OfferCard extends React.PureComponent {
 
   handleOfferTitleClick() {
     this.props.onOfferTitleClick(this.props.offer);
+  }
+
+  handleBookmarkClick() {
+    const {onBookmarkClick, offer} = this.props;
+    onBookmarkClick(offer.id, !offer.isInBookmarks ? 1 : 0);
   }
 
 
@@ -56,7 +62,11 @@ class OfferCard extends React.PureComponent {
             <b className="place-card__price-value">&euro;{offer.price}</b>
             <span className="place-card__price-text">&#47;&nbsp;night</span>
           </div>
-          <button className={`place-card__bookmark-button button ${offer.isInBookmarks ? `place-card__bookmark-button--active` : ``}`} type="button">
+          <button
+            className={`place-card__bookmark-button button ${offer.isInBookmarks ? `place-card__bookmark-button--active` : ``}`}
+            type="button"
+            onClick={this.handleBookmarkClick}
+          >
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
@@ -85,6 +95,7 @@ OfferCard.propTypes = {
   onOfferTitleClick: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
+  onBookmarkClick: PropTypes.func.isRequired,
 };
 
 OfferCard.defaultProps = {

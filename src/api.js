@@ -12,6 +12,9 @@ export const createAPI = () => {
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
+    if (err.response.status === 403 && err.config.url.includes(`/login`)) {
+      return;
+    }
     if (err.response.status === 403) {
       window.location = `${window.location.origin}/login`;
       return;
