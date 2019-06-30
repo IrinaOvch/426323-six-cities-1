@@ -17,7 +17,7 @@ const OffersListWrapper = withActiveItem()(OffersList);
 const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
 const SortingOptionsWrapper = withDropdown(false)(SortingOptions);
 
-const sortingFunctions = {
+const SortingFunctions = {
   "Popular": (a, b) => a.id - b.id,
   "Price: low to high": (a, b) => a.price - b.price,
   "Price: high to low": (a, b) => b.price - a.price,
@@ -25,9 +25,9 @@ const sortingFunctions = {
 };
 
 const MainPage = (props) => {
-  const {offers, leaflet, activeCity, onCityClick, userProfile, currentSortType, onChangeSortType} = props;
+  const {offers, leaflet, activeCity, onCityClick, userProfile, currentSortType, onChangeSortType, currentOfferId} = props;
 
-  const sortedOffers = offers.sort(sortingFunctions[currentSortType]);
+  const sortedOffers = offers.sort(SortingFunctions[currentSortType]);
   return (
   <>
     <Header userProfile={userProfile}/>
@@ -55,6 +55,7 @@ const MainPage = (props) => {
               offers={offers}
               leaflet={leaflet}
               className={`cities`}
+              currentOfferId={currentOfferId}
             />
           </div>
         </div>
@@ -79,7 +80,8 @@ MainPage.propTypes = {
     isPro: PropTypes.bool.isRequired,
   }),
   currentSortType: PropTypes.string.isRequired,
-  onChangeSortType: PropTypes.func.isRequired
+  onChangeSortType: PropTypes.func.isRequired,
+  currentOfferId: PropTypes.number,
 };
 
 export default MainPage;

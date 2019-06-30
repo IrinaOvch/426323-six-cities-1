@@ -5,7 +5,7 @@ import MainPage from '../main-page/main-page.jsx';
 import Offer from '../../types/offer-type.js';
 import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.js';
 import {ActionCreator as DataActionCreator} from '../../reducer/data/data.js';
-import {getCityOffers, getCity, getUserProfile, getSortType, getOffersRequestLoaded, getAuthenticatedState} from '../../reducer/selectors.js';
+import {getCityOffers, getCity, getUserProfile, getSortType, getOffersRequestLoaded, getAuthenticatedState, getCurrentOffer} from '../../reducer/selectors.js';
 import SignIn from '../sign-in/sign-in.jsx';
 import {Switch, Route} from 'react-router-dom';
 import withAuth from '../../hocs/with-auth/with-auth.jsx';
@@ -25,6 +25,7 @@ const App = (props) => {
     onChangeSortType,
     offersRequestLoaded,
     isAuthenticated,
+    currentOffer,
   } = props;
 
   return <>
@@ -55,6 +56,7 @@ const App = (props) => {
             userProfile={userProfile}
             currentSortType={currentSortType}
             onChangeSortType={onChangeSortType}
+            currentOfferId={currentOffer && currentOffer.id}
           />
         }></Route>
       <Route path="/login" component={withLoginForm(SignIn)}></Route>
@@ -87,6 +89,7 @@ App.propTypes = {
   onChangeSortType: PropTypes.func.isRequired,
   offersRequestLoaded: PropTypes.bool.isRequired,
   isAuthenticated: PropTypes.bool,
+  currentOffer: Offer,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -96,13 +99,14 @@ const mapStateToProps = (state, ownProps) => {
     userProfile: getUserProfile(state),
     currentSortType: getSortType(state),
     offersRequestLoaded: getOffersRequestLoaded(state),
-    isAuthenticated: getAuthenticatedState(state)
+    isAuthenticated: getAuthenticatedState(state),
+    currentOffer: getCurrentOffer(state),
   });
 };
 
 const mapDispatchToProps = (dispatch) => ({
   onCityClick: (city) => dispatch(CitiesActionCreator.changeCity(city)),
-  onChangeSortType: (sortType) => dispatch(DataActionCreator.changeSortType(sortType))
+  onChangeSortType: (sortType) => dispatch(DataActionCreator.changeSortType(sortType)),
 });
 
 export {App};

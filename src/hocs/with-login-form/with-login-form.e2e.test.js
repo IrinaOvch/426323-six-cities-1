@@ -15,14 +15,14 @@ it(`should test WithLoginForm HOC`, () => {
   expect(component.state().email).toEqual(``);
   expect(component.state().password).toEqual(``);
 
-  component.props().handleFormChange({
+  component.props().onFormChange({
     target: {
       name: `email`,
       value: `123@gmail.com`
     }
   });
 
-  component.props().handleFormChange({
+  component.props().onFormChange({
     target: {
       name: `password`,
       value: `qwerty`

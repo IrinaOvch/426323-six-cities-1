@@ -1,10 +1,8 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
 import PropTypes from 'prop-types';
 import CITIES from '../../cities';
 import Offer from '../../types/offer-type.js';
-import {getCurrentOffer} from '../../reducer/selectors.js';
 
 class Map extends React.PureComponent {
 
@@ -37,7 +35,7 @@ class Map extends React.PureComponent {
   }
 
   _buildMap() {
-    const {activeCity, mapData, offers, currentOffer} = this.props;
+    const {activeCity, mapData, offers, currentOfferId = 0} = this.props;
     const cityCenter = CITIES[activeCity];
     const {zoom} = mapData;
 
@@ -49,7 +47,7 @@ class Map extends React.PureComponent {
     this.map.setView(cityCenter, zoom);
     for (const offer of offers) {
 
-      this._addPin({offerCoordinates: offer.coordinates, activeOffer: offer.id === (currentOffer && currentOffer.id)});
+      this._addPin({offerCoordinates: offer.coordinates, activeOffer: offer.id === currentOfferId});
     }
   }
 
@@ -85,14 +83,7 @@ Map.propTypes = {
   }),
   leaflet: PropTypes.object.isRequired,
   activeCity: PropTypes.string.isRequired,
-  currentOffer: PropTypes.object,
+  currentOfferId: PropTypes.number,
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return Object.assign({}, ownProps, {
-    currentOffer: getCurrentOffer(state),
-  });
-};
-
-export {Map};
-export default connect(mapStateToProps)(Map);
+export default Map;

@@ -21,6 +21,22 @@ const withReview = (Component) => {
       this._onSubmitForm = this._onSubmitForm.bind(this);
     }
 
+    render() {
+      const {comment, rating} = this.state;
+      const isSubmitDisabled = !rating || comment.length < commentLength.MIN;
+      return (
+        <Component
+          {...this.props}
+          isSubmitDisabled={isSubmitDisabled}
+          rating={rating}
+          comment={comment}
+          onSetRating={this._setRating}
+          onSetComment={this._setComment}
+          onSubmitForm={this._onSubmitForm}
+        />
+      );
+    }
+
     _setRating(evt) {
       this.setState({rating: evt.target.value});
     }
@@ -50,22 +66,6 @@ const withReview = (Component) => {
       const {offerId} = this.props;
       this.props.sendReview(offerId, rating, comment);
       this._resetReview();
-    }
-
-    render() {
-      const {comment, rating} = this.state;
-      const isSubmitDisabled = !rating || comment.length < commentLength.MIN;
-      return (
-        <Component
-          {...this.props}
-          isSubmitDisabled={isSubmitDisabled}
-          rating={rating}
-          comment={comment}
-          setRating={this._setRating}
-          setComment={this._setComment}
-          onSubmitForm={this._onSubmitForm}
-        />
-      );
     }
   }
 

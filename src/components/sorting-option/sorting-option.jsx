@@ -8,10 +8,10 @@ class SortingOption extends React.PureComponent {
   }
 
   sortBy() {
-    const {onSelect, sortingOption, handleToggleDropdown} = this.props;
+    const {onSelect, sortingOption, onToggleDropdown} = this.props;
 
     onSelect(sortingOption);
-    handleToggleDropdown();
+    onToggleDropdown();
   }
 
   render() {
@@ -29,7 +29,7 @@ SortingOption.propTypes = {
   onSelect: PropTypes.func.isRequired,
   activeItem: PropTypes.bool.isRequired,
   sortingOption: PropTypes.string.isRequired,
-  handleToggleDropdown: PropTypes.func.isRequired,
+  onToggleDropdown: PropTypes.func.isRequired,
 };
 
 export default SortingOption;

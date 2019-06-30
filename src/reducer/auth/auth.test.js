@@ -49,8 +49,8 @@ describe(`Action creator works correctly`, () => {
     });
   });
 
-  it(`should check ActionCreator.errorInAuthentication output`, () => {
-    expect(ActionCreator.errorInAuthentication(`Error #1`)).toEqual({
+  it(`should check ActionCreator.setAuthenticationError output`, () => {
+    expect(ActionCreator.setAuthenticationError(`Error #1`)).toEqual({
       type: `ERROR_IN_AUTHENTICATION`,
       payload: `Error #1`
     });

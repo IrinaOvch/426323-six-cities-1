@@ -7,7 +7,7 @@ it(`should render SortingOptions correctly`, () => {
   const page = renderer.create(
       <SortingOptions
         activeItem={true}
-        handleToggleDropdown={jest.fn()}
+        onToggleDropdown={jest.fn()}
         onSelect={jest.fn()}
         currentSortType={`Popular`}
         isDropdownOpen={true}

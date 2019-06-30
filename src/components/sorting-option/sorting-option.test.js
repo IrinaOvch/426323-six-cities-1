@@ -8,7 +8,7 @@ it(`should render SortingOption correctly`, () => {
       <SortingOption
         activeItem={true}
         sortingOption={`Popular`}
-        handleToggleDropdown={jest.fn()}
+        onToggleDropdown={jest.fn()}
         onSelect={jest.fn()}
       />
   ).toJSON();

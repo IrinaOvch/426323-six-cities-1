@@ -29,14 +29,14 @@ class OffersList extends React.PureComponent {
 
 
   render() {
-    const {offers, handleActiveItemSet, cardComponent: CardComponent, className} = this.props;
+    const {offers, onActiveItemSet, cardComponent: CardComponent, className} = this.props;
     return <div className={className}>
       {offers.map((offer, i) => (
         <CardComponent
           offer={offer}
           key={i}
-          onMouseEnter={handleActiveItemSet}
-          onMouseLeave={handleActiveItemSet}
+          onMouseEnter={onActiveItemSet}
+          onMouseLeave={onActiveItemSet}
           onOfferImageClick={this.handleOfferImageClick}
           onOfferTitleClick={this.handleOfferTitleClick}
           onBookmarkClick={this.handleBookmarkClick}
@@ -48,7 +48,7 @@ class OffersList extends React.PureComponent {
 
 OffersList.propTypes = {
   offers: PropTypes.arrayOf(Offer).isRequired,
-  handleActiveItemSet: PropTypes.func.isRequired,
+  onActiveItemSet: PropTypes.func.isRequired,
   onChangeCurrentOffer: PropTypes.func.isRequired,
   updateFavorite: PropTypes.func.isRequired,
   cardComponent: PropTypes.func.isRequired,

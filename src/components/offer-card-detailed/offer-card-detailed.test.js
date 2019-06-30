@@ -28,6 +28,7 @@ it(`should render OfferCardDetailed correctly`, () => {
             isLoggedIn={true}
             sendReview={jest.fn()}
             isFormSending={false}
+            updateFavorite={jest.fn()}
           />
         </MemoryRouter>
       </Provider>

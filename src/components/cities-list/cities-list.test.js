@@ -8,7 +8,7 @@ it(`should render CitiesList correctly`, () => {
       <CitiesList
         activeItem={`Paris`}
         onCityClick={jest.fn()}
-        handleActiveItemSet={jest.fn()}
+        onActiveItemSet={jest.fn()}
       />
   ).toJSON();
 

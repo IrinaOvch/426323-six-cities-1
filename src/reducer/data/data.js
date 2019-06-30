@@ -102,7 +102,7 @@ const Operation = {
         }), offerId}));
       })
       .catch((err) => {
-        dispatch(ActionCreator.loadReviewsError(err));
+        dispatch(ActionCreator.loadReviewsError(err.message));
       });
   },
   updateFavorite: (offerId, status) => (dispatch, _getState, api) => {

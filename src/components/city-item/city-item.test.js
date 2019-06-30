@@ -9,7 +9,7 @@ it(`should render CitiesItem correctly`, () => {
         city={`Paris`}
         onCityClick={jest.fn()}
         isActiveCity={true}
-        handleActiveItemSet={jest.fn()}
+        onActiveItemSet={jest.fn()}
       />
   ).toJSON();
 

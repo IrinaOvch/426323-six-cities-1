@@ -26,7 +26,7 @@ const withDropdown = (Component) => {
         {...this.props}
         email={this.state.email}
         password={this.state.password}
-        handleFormChange={this.handleFormChange}
+        onFormChange={this.handleFormChange}
       />;
     }
   }
