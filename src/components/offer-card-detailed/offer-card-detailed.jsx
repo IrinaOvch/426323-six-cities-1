@@ -8,8 +8,7 @@ import Offer from '../../types/offer-type.js';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Review from '../../types/review-type.js';
 import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.js';
-import {ActionCreator as DataActionCreator} from '../../reducer/data/data.js';
-import {getOffer, getReviews, getUserProfile, getFormSendingState, getFormErrors, getCurrentOffer} from '../../reducer/selectors';
+import {getOffer, getReviews, getUserProfile, getFormSendingState, getFormErrors} from '../../reducer/selectors';
 import {Operation} from '../../reducer/data/data.js';
 import mapData from '../../mocks/map-data.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
@@ -199,8 +198,6 @@ OfferCardDetailed.propTypes = {
   errors: PropTypes.string,
   isFormSending: PropTypes.bool.isRequired,
   updateFavorite: PropTypes.func.isRequired,
-  currentOffer: Offer,
-  onChangeCurrentOffer: PropTypes.func.isRequired,
 };
 
 const validateNumber = (text) => {
@@ -219,7 +216,6 @@ const mapStateToProps = (state, ownProps) => {
     reviews: number !== 0 ? getReviews(state, number) : [],
     isFormSending: getFormSendingState(state),
     errors: getFormErrors(state),
-    currentOffer: getCurrentOffer(state),
   });
 };
 
@@ -228,7 +224,6 @@ const mapDispatchToProps = (dispatch) => ({
   updateActiveCity: (city) => dispatch(CitiesActionCreator.changeCity(city)),
   sendReview: (offerId, rating, comment) => dispatch(Operation.sendReview(offerId, rating, comment)),
   updateFavorite: (offerId, status) => dispatch(Operation.updateFavorite(offerId, status)),
-  onChangeCurrentOffer: (currentOffer) => dispatch(DataActionCreator.changeCurrentOffer(currentOffer)),
 });
 
 export {OfferCardDetailed};

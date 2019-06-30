@@ -20,7 +20,7 @@ const withActiveItem = (initialItem) => (Component) => {
       return <Component
         {...this.props}
         activeItem={this.state.activeItem}
-        handleActiveItemSet={this.handleActiveItemSet}
+        onActiveItemSet={this.handleActiveItemSet}
       />;
     }
   }

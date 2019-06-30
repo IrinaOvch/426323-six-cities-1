@@ -18,8 +18,8 @@ class SignIn extends React.PureComponent {
     this.props.onLogin(this.props.email, this.props.password);
   }
   render() {
-    const {location} = this.props;
-    const isLoggedIn = Boolean(this.props.userProfile);
+    const {location, email, onFormChange, password, activeCity, userProfile} = this.props;
+    const isLoggedIn = Boolean(userProfile);
 
     if (isLoggedIn) {
       const pathName = location.state && location.state.previousPage ? location.state.previousPage : `/`;
@@ -33,11 +33,11 @@ class SignIn extends React.PureComponent {
             <form className="login__form form" onSubmit={this.handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" value={this.props.email} placeholder="Email" required onChange={this.props.handleFormChange}/>
+                <input className="login__input form__input" type="email" name="email" value={email} placeholder="Email" required onChange={onFormChange}/>
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" value={this.props.password} placeholder="Password" required onChange={this.props.handleFormChange}/>
+                <input className="login__input form__input" type="password" name="password" value={password} placeholder="Password" required onChange={onFormChange}/>
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
@@ -45,7 +45,7 @@ class SignIn extends React.PureComponent {
           <section className="locations locations--login locations--current">
             <div className="locations__item">
               <a className="locations__item-link">
-                <span>{this.props.activeCity}</span>
+                <span>{activeCity}</span>
               </a>
             </div>
           </section>
@@ -70,7 +70,7 @@ SignIn.propTypes = {
   }).isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
-  handleFormChange: PropTypes.func.isRequired,
+  onFormChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

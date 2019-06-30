@@ -10,7 +10,7 @@ class CityItem extends React.PureComponent {
 
   handleCityClick() {
     this.props.onCityClick(this.props.city);
-    this.props.handleActiveItemSet(this.props.city);
+    this.props.onActiveItemSet(this.props.city);
   }
 
   render() {
@@ -27,7 +27,7 @@ CityItem.propTypes = {
   city: PropTypes.string.isRequired,
   isActiveCity: PropTypes.bool.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  handleActiveItemSet: PropTypes.func.isRequired,
+  onActiveItemSet: PropTypes.func.isRequired,
 };
 
 export default CityItem;

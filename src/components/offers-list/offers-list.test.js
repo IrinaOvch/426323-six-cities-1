@@ -20,11 +20,13 @@ it(`should render OffersList correctly`, () => {
         <MemoryRouter>
           <OffersList
             offers={offers}
-            handleActiveItemSet={jest.fn()}
+            onActiveItemSet={jest.fn()}
             cardComponent={OfferCard}
             className={`test`}
             onChangeCurrentOffer={jest.fn()}
             updateFavorite={jest.fn()}
+            onMouseEnter={jest.fn()}
+            onMouseLeave={jest.fn()}
           />
         </MemoryRouter>
       </Provider>

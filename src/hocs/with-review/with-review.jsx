@@ -30,8 +30,8 @@ const withReview = (Component) => {
           isSubmitDisabled={isSubmitDisabled}
           rating={rating}
           comment={comment}
-          setRating={this._setRating}
-          setComment={this._setComment}
+          onSetRating={this._setRating}
+          onSetComment={this._setComment}
           onSubmitForm={this._onSubmitForm}
         />
       );

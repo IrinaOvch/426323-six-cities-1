@@ -12,7 +12,7 @@ it(`should render SignIn correctly`, () => {
         location={{pathname: ``}}
         email={``}
         password={``}
-        handleFormChange={jest.fn()}
+        onFormChange={jest.fn()}
       />
   ).toJSON();
 

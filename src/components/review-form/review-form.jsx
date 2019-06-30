@@ -5,10 +5,10 @@ import withReview from '../../hocs/with-review/with-review.jsx';
 const ratingOptions = [`perfect`, `good`, `not bad`, `badly`, `terribly`];
 
 const ReviewForm = ({
-  setRating,
+  onSetRating,
   rating,
   onSubmitForm,
-  setComment,
+  onSetComment,
   comment,
   isSubmitDisabled,
   isFormSending,
@@ -31,7 +31,7 @@ const ReviewForm = ({
             id={`${count}-stars`}
             type="radio"
             checked={count === Number(rating)}
-            onChange={setRating}
+            onChange={onSetRating}
             disabled={isFormSending}
           />
           <label htmlFor={`${count}-stars`} className="reviews__rating-label form__rating-label" title={option}>
@@ -48,7 +48,7 @@ const ReviewForm = ({
       name="review"
       placeholder="Tell how was your stay, what you like and what can be improved"
       value={comment}
-      onChange={setComment}
+      onChange={onSetComment}
       disabled={isFormSending}
     >
     </textarea>
@@ -72,10 +72,10 @@ const ReviewForm = ({
 };
 
 ReviewForm.propTypes = {
-  setRating: PropTypes.func.isRequired,
+  onSetRating: PropTypes.func.isRequired,
   onSubmitForm: PropTypes.func.isRequired,
   rating: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-  setComment: PropTypes.func.isRequired,
+  onSetComment: PropTypes.func.isRequired,
   comment: PropTypes.string.isRequired,
   isSubmitDisabled: PropTypes.bool,
   isFormSending: PropTypes.bool,

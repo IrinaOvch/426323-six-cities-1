@@ -19,7 +19,7 @@ const withDropdown = (initialItem) => (Component) => {
       return <Component
         {...this.props}
         isDropdownOpen={this.state.isDropdownOpen}
-        handleToggleDropdown={this.handleToggleDropdown}
+        onToggleDropdown={this.handleToggleDropdown}
       />;
     }
   }

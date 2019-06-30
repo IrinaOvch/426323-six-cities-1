@@ -14,6 +14,6 @@ it(`should test WithDropdown HOC`, () => {
 
   expect(component.state().isDropdownOpen).toEqual(false);
 
-  component.props().handleToggleDropdown(true);
+  component.props().onToggleDropdown(true);
   expect(component.state().isDropdownOpen).toEqual(true);
 });
