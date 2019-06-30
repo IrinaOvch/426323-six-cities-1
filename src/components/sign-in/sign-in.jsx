@@ -10,26 +10,12 @@ class SignIn extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {
-      email: ``,
-      password: ``,
-    };
-
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFormChange = this.handleFormChange.bind(this);
-  }
-
-  handleFormChange(evt) {
-    const name = evt.target.name;
-    const newValue = evt.target.value;
-    this.setState((prevState) => (Object.assign({}, prevState, {
-      [name]: newValue,
-    })));
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
-    this.props.onLogin(this.state.email, this.state.password);
+    this.props.onLogin(this.props.email, this.props.password);
   }
   render() {
     const {location} = this.props;
@@ -47,18 +33,18 @@ class SignIn extends React.PureComponent {
             <form className="login__form form" onSubmit={this.handleSubmit}>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">E-mail</label>
-                <input className="login__input form__input" type="email" name="email" value={this.state.email} placeholder="Email" required onChange={this.handleFormChange}/>
+                <input className="login__input form__input" type="email" name="email" value={this.props.email} placeholder="Email" required onChange={this.props.handleFormChange}/>
               </div>
               <div className="login__input-wrapper form__input-wrapper">
                 <label className="visually-hidden">Password</label>
-                <input className="login__input form__input" type="password" name="password" value={this.state.password} placeholder="Password" required onChange={this.handleFormChange}/>
+                <input className="login__input form__input" type="password" name="password" value={this.props.password} placeholder="Password" required onChange={this.props.handleFormChange}/>
               </div>
               <button className="login__submit form__submit button" type="submit">Sign in</button>
             </form>
           </section>
           <section className="locations locations--login locations--current">
             <div className="locations__item">
-              <a className="locations__item-link" href="#">
+              <a className="locations__item-link">
                 <span>{this.props.activeCity}</span>
               </a>
             </div>
@@ -82,6 +68,9 @@ SignIn.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string.isRequired,
   }).isRequired,
+  email: PropTypes.string.isRequired,
+  password: PropTypes.string.isRequired,
+  handleFormChange: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) =>

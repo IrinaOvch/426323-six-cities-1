@@ -5,10 +5,12 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 
-import OffersList from './offers-list.jsx';
+import {OffersList} from './offers-list.jsx';
 import offers from '../../mocks/offers.js';
 import {createAPI} from '../../api.js';
 import reducer from '../../reducer/reducer.js';
+
+import OfferCard from "../offer-card/offer-card.jsx";
 
 it(`should render OffersList correctly`, () => {
   const api = createAPI((...args) => store.dispatch(...args));
@@ -19,6 +21,10 @@ it(`should render OffersList correctly`, () => {
           <OffersList
             offers={offers}
             handleActiveItemSet={jest.fn()}
+            cardComponent={OfferCard}
+            className={`test`}
+            onChangeCurrentOffer={jest.fn()}
+            updateFavorite={jest.fn()}
           />
         </MemoryRouter>
       </Provider>

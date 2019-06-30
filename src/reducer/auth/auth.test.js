@@ -17,7 +17,20 @@ describe(`Reducer works correctly`, () => {
     expect(reducer({userProfile: null}, {
       type: `UPDATE_USER_PROFILE`,
       payload: userProfile
-    })).toEqual({userProfile});
+    })).toEqual({
+      isAuthenticated: true,
+      userProfile
+    });
+  });
+});
+
+it(`should update error`, () => {
+  expect(reducer({error: null}, {
+    type: `ERROR_IN_AUTHENTICATION`,
+    payload: `Error #1`
+  })).toEqual({
+    isAuthenticated: false,
+    error: `Error #1`
   });
 });
 
@@ -33,6 +46,13 @@ describe(`Action creator works correctly`, () => {
     expect(ActionCreator.updateUserProfile(userProfile)).toEqual({
       type: `UPDATE_USER_PROFILE`,
       payload: userProfile
+    });
+  });
+
+  it(`should check ActionCreator.errorInAuthentication output`, () => {
+    expect(ActionCreator.errorInAuthentication(`Error #1`)).toEqual({
+      type: `ERROR_IN_AUTHENTICATION`,
+      payload: `Error #1`
     });
   });
 });

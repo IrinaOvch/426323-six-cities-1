@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import OfferCard from '../offer-card/offer-card.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import CitiesList from '../cities-list/cities-list.jsx';
 import Map from '../map/map.jsx';
@@ -42,7 +43,10 @@ const MainPage = (props) => {
             <h2 className="visually-hidden">Places</h2>
             <b className="places__found">{offers.length} places to stay in {activeCity}</b>
             <SortingOptionsWrapper currentSortType={currentSortType} onSelect={onChangeSortType}/>
-            <OffersListWrapper offers={sortedOffers}/>
+            <OffersListWrapper
+              offers={sortedOffers}
+              cardComponent={OfferCard}
+              className={`cities__places-list places__list tabs__content`}/>
           </section>
           <div className="cities__right-section">
             <Map

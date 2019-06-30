@@ -81,7 +81,6 @@ Array [
           >
             <a
               className="locations__item-link tabs__item tabs__item--active"
-              href="#"
               onClick={[Function]}
             >
               <span>
@@ -94,7 +93,6 @@ Array [
           >
             <a
               className="locations__item-link tabs__item "
-              href="#"
               onClick={[Function]}
             >
               <span>
@@ -107,7 +105,6 @@ Array [
           >
             <a
               className="locations__item-link tabs__item "
-              href="#"
               onClick={[Function]}
             >
               <span>
@@ -120,7 +117,6 @@ Array [
           >
             <a
               className="locations__item-link tabs__item "
-              href="#"
               onClick={[Function]}
             >
               <span>
@@ -133,7 +129,6 @@ Array [
           >
             <a
               className="locations__item-link tabs__item "
-              href="#"
               onClick={[Function]}
             >
               <span>
@@ -146,7 +141,6 @@ Array [
           >
             <a
               className="locations__item-link tabs__item "
-              href="#"
               onClick={[Function]}
             >
               <span>
