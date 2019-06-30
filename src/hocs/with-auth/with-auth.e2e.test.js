@@ -8,25 +8,25 @@ import withAuth from './with-auth.jsx';
 configure({adapter: new Adapter()});
 
 const MockComponent = () => <div />;
-const userProfile = {
-  id: 1,
-  email: ``,
-  name: ``,
-  avatarUrl: ``,
-  isPro: false,
-};
 
-const WithAuthNoProfile = withAuth(null)(MockComponent);
-const WithAuthWithProfile = withAuth(userProfile)(MockComponent);
+const WithAuthNull = withAuth(null)(MockComponent);
+const WithAuthNotAuthorized = withAuth(false)(MockComponent);
+const WithAuthAuthorized = withAuth(true)(MockComponent);
 
-it(`should test withAuth HoC without profile`, () => {
-  const component = shallow(<WithAuthNoProfile/>);
+it(`should test withAuth HoC with isAuthenticated = false`, () => {
+  const component = shallow(<WithAuthNotAuthorized/>);
 
   expect(component.find(Redirect)).toHaveLength(1);
 });
 
-it(`should test withAuth HoC with profile`, () => {
-  const component = shallow(<WithAuthWithProfile/>);
+it(`should test withAuth HoC with isAuthenticated = true`, () => {
+  const component = shallow(<WithAuthAuthorized/>);
+
+  expect(component.find(Redirect)).toHaveLength(0);
+});
+
+it(`should test withAuth HoC with isAuthenticated = null `, () => {
+  const component = shallow(<WithAuthNull/>);
 
   expect(component.find(Redirect)).toHaveLength(0);
 });

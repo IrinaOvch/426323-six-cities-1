@@ -8,13 +8,14 @@ import Offer from '../../types/offer-type.js';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Review from '../../types/review-type.js';
 import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.js';
-import {getOffer, getReviews, getUserProfile} from '../../reducer/selectors';
+import {getOffer, getReviews, getUserProfile, getFormSendingState, getFormErrors} from '../../reducer/selectors';
 import {Operation} from '../../reducer/data/data.js';
 import mapData from '../../mocks/map-data.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
 import Header from '../header/header.jsx';
+import OfferCard from "../offer-card/offer-card.jsx";
 
 const AMOUNT_OF_NEARBY_OFFERS = 3;
 const MAX_IMAGES_PER_PAGE = 6;
@@ -32,7 +33,7 @@ class OfferCardDetailed extends React.PureComponent {
   }
 
   render() {
-    const {isLoggedIn, userProfile, offer, reviews, offerId, activeCity, offers, leaflet, sendReview} = this.props;
+    const {isLoggedIn, userProfile, offer, reviews, offerId, activeCity, offers, leaflet, sendReview, isFormSending, errors} = this.props;
     if (offerId === 0) {
       return <Redirect to={`/`}/>;
     }
@@ -72,10 +73,10 @@ class OfferCardDetailed extends React.PureComponent {
             </div>
             <div className="property__rating rating">
               <div className="property__stars rating__stars">
-                <span style={{width: (offer.rating * 10) * 2 + `%`}}></span>
+                <span style={{width: (Math.round(offer.rating) * 10) * 2 + `%`}}></span>
                 <span className="visually-hidden">Rating</span>
               </div>
-              <span className="property__rating-value rating__value">{offer.rating}</span>
+              <span className="property__rating-value rating__value">{Math.round(offer.rating)}</span>
             </div>
             <ul className="property__features">
               <li className="property__feature property__feature--entire">
@@ -130,6 +131,8 @@ class OfferCardDetailed extends React.PureComponent {
                 <ReviewForm
                   offerId={offerId}
                   sendReview={sendReview}
+                  isFormSending={isFormSending}
+                  errors={errors}
                 />)}
             </section>
           </div>
@@ -146,7 +149,10 @@ class OfferCardDetailed extends React.PureComponent {
         <section className="near-places places">
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
-            <OffersListWrapper offers={filteredOffers}/>
+            <OffersListWrapper
+              offers={filteredOffers}
+              cardComponent={OfferCard}
+              className={`cities__places-list places__list tabs__content`}/>
           </div>
         </section>
       </div>
@@ -173,6 +179,8 @@ OfferCardDetailed.propTypes = {
     isPro: PropTypes.bool.isRequired,
   }),
   sendReview: PropTypes.func.isRequired,
+  errors: PropTypes.string,
+  isFormSending: PropTypes.bool.isRequired,
 };
 
 const validateNumber = (text) => {
@@ -189,6 +197,8 @@ const mapStateToProps = (state, ownProps) => {
     offer: getOffer(state, number),
     offerId: number,
     reviews: number !== 0 ? getReviews(state, number) : [],
+    isFormSending: getFormSendingState(state),
+    errors: getFormErrors(state),
   });
 };
 

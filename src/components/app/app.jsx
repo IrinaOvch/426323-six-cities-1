@@ -5,10 +5,11 @@ import MainPage from '../main-page/main-page.jsx';
 import Offer from '../../types/offer-type.js';
 import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.js';
 import {ActionCreator as DataActionCreator} from '../../reducer/data/data.js';
-import {getCityOffers, getCity, getUserProfile, getSortType, getOffersRequestLoaded} from '../../reducer/selectors.js';
+import {getCityOffers, getCity, getUserProfile, getSortType, getOffersRequestLoaded, getAuthenticatedState} from '../../reducer/selectors.js';
 import SignIn from '../sign-in/sign-in.jsx';
 import {Switch, Route} from 'react-router-dom';
 import withAuth from '../../hocs/with-auth/with-auth.jsx';
+import withLoginForm from '../../hocs/with-login-form/with-login-form.jsx';
 import Favorites from '../favorites/favorites.jsx';
 import OfferCardDetailed from '../offer-card-detailed/offer-card-detailed.jsx';
 import MainPageEmpty from '../main-page-empty/main-page-empty.jsx';
@@ -23,6 +24,7 @@ const App = (props) => {
     currentSortType,
     onChangeSortType,
     offersRequestLoaded,
+    isAuthenticated,
   } = props;
 
   return <>
@@ -55,8 +57,8 @@ const App = (props) => {
             onChangeSortType={onChangeSortType}
           />
         }></Route>
-      <Route path="/login" component={SignIn}></Route>
-      <Route path="/favorites" component={withAuth(userProfile)(Favorites)}></Route>
+      <Route path="/login" component={withLoginForm(SignIn)}></Route>
+      <Route path="/favorites" component={withAuth(isAuthenticated)(Favorites)}></Route>
       <Route path="/offer/:id" render={(routeProps) => {
         return offers.length !== 0 && <OfferCardDetailed
           {...routeProps}
@@ -84,6 +86,7 @@ App.propTypes = {
   currentSortType: PropTypes.string.isRequired,
   onChangeSortType: PropTypes.func.isRequired,
   offersRequestLoaded: PropTypes.bool.isRequired,
+  isAuthenticated: PropTypes.bool,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -92,7 +95,8 @@ const mapStateToProps = (state, ownProps) => {
     offers: getCityOffers(state),
     userProfile: getUserProfile(state),
     currentSortType: getSortType(state),
-    offersRequestLoaded: getOffersRequestLoaded(state)
+    offersRequestLoaded: getOffersRequestLoaded(state),
+    isAuthenticated: getAuthenticatedState(state)
   });
 };
 

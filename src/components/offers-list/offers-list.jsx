@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import {connect} from 'react-redux';
 
-import OfferCard from "../offer-card/offer-card.jsx";
 import Offer from "../../types/offer-type.js";
 import {getCurrentOffer} from '../../reducer/selectors.js';
 import {ActionCreator, Operation} from '../../reducer/data/data.js';
@@ -30,12 +29,12 @@ class OffersList extends React.PureComponent {
 
 
   render() {
-    const {offers, handleActiveItemSet} = this.props;
-    return <div className="cities__places-list places__list tabs__content">
-      {offers.map((offer, idx) => (
-        <OfferCard
+    const {offers, handleActiveItemSet, cardComponent: CardComponent, className} = this.props;
+    return <div className={className}>
+      {offers.map((offer, i) => (
+        <CardComponent
           offer={offer}
-          key={idx}
+          key={i}
           onMouseEnter={handleActiveItemSet}
           onMouseLeave={handleActiveItemSet}
           onOfferImageClick={this.handleOfferImageClick}
@@ -52,6 +51,8 @@ OffersList.propTypes = {
   handleActiveItemSet: PropTypes.func.isRequired,
   onChangeCurrentOffer: PropTypes.func.isRequired,
   updateFavorite: PropTypes.func.isRequired,
+  cardComponent: PropTypes.func.isRequired,
+  className: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {

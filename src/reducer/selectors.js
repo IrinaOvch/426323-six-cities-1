@@ -40,10 +40,26 @@ export const getUserProfile = (state) => {
   return state[NAME_SPACE_AUTH].userProfile;
 };
 
+export const getAuthenticatedState = (state) => {
+  return state[NAME_SPACE_AUTH].isAuthenticated;
+};
+
 export const getSortType = (state) => {
   return state[NAME_SPACE_DATA].sortType;
 };
 
 export const getOffersRequestLoaded = (state) => {
   return state[NAME_SPACE_DATA].offersRequestLoaded;
+};
+
+export const getFavorites = (state) => {
+  return state[NAME_SPACE_DATA].favorites;
+};
+
+export const getFormSendingState = (state) => {
+  return state[NAME_SPACE_DATA].isFormSending;
+};
+
+export const getFormErrors = (state) => {
+  return state[NAME_SPACE_DATA].errors;
 };

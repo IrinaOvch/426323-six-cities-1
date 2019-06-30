@@ -26,7 +26,6 @@ const init = () => {
   );
   store.dispatch(DataOperation.loadOffers());
   store.dispatch(AuthOperation.getLogin());
-  // tests
   ReactDOM.render(<Provider store={store}>
     <BrowserRouter>
       <App

@@ -26,6 +26,7 @@ describe(`Reducer works correctly`, () => {
       payload: {reviews: [`review`], offerId: 1},
     })).toEqual({
       reviews: {1: [`review`]},
+      isFormSending: false,
     });
   });
 
@@ -62,6 +63,45 @@ describe(`Reducer works correctly`, () => {
       payload,
     })).toEqual({
       offers: offers.map((offer) => (offer.id === payload.id ? payload : offer))
+    });
+  });
+
+  it(`should start loading reviews`, () => {
+    expect(reducer({
+      isFormSending: false,
+      errors: `errors`,
+    }, {
+      type: `START_LOADING_REVIEWS`,
+    })).toEqual({
+      isFormSending: true,
+      errors: null,
+    });
+  });
+
+  it(`should update error if loading reviews failed`, () => {
+    expect(reducer({
+      isFormSending: true,
+      errors: null,
+    }, {
+      type: `ERROR_LOADING_REVIEWS`,
+      payload: `errors`,
+    })).toEqual({
+      isFormSending: false,
+      errors: `errors`,
+    });
+  });
+
+  it(`should load favorites`, () => {
+    expect(reducer({
+      favorites: {}
+    }, {
+      type: `LOAD_FAVORITES`,
+      payload: offers,
+    })).toEqual({
+      favorites: {
+        "Amsterdam": [offers[0]],
+        "Brussels": [offers[1]],
+      }
     });
   });
 });
@@ -101,5 +141,24 @@ describe(`Action creator works correctly`, () => {
       payload: offers[0],
     });
   });
-});
 
+  it(`should check ActionCreator.loadReviewsError output`, () => {
+    expect(ActionCreator.loadReviewsError(`Error`)).toEqual({
+      type: `ERROR_LOADING_REVIEWS`,
+      payload: `Error`,
+    });
+  });
+
+  it(`should check ActionCreator.startLoadingReviews output`, () => {
+    expect(ActionCreator.startLoadingReviews()).toEqual({
+      type: `START_LOADING_REVIEWS`,
+    });
+  });
+
+  it(`should check ActionCreator.loadFavorites output`, () => {
+    expect(ActionCreator.loadFavorites(offers)).toEqual({
+      type: `LOAD_FAVORITES`,
+      payload: offers,
+    });
+  });
+});

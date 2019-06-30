@@ -16,7 +16,7 @@ class CityItem extends React.PureComponent {
   render() {
     const {city, isActiveCity} = this.props;
     return (<li className="locations__item">
-      <a className={`locations__item-link tabs__item ${isActiveCity ? `tabs__item--active` : ``}`} onClick={this.handleCityClick} href="#">
+      <a className={`locations__item-link tabs__item ${isActiveCity ? `tabs__item--active` : ``}`} onClick={this.handleCityClick}>
         <span>{city}</span>
       </a>
     </li>);

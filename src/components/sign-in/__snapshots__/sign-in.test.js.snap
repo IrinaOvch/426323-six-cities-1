@@ -30,7 +30,7 @@ exports[`should render SignIn correctly 1`] = `
           <input
             className="login__input form__input"
             name="email"
-            onChange={[Function]}
+            onChange={[MockFunction]}
             placeholder="Email"
             required={true}
             type="email"
@@ -48,7 +48,7 @@ exports[`should render SignIn correctly 1`] = `
           <input
             className="login__input form__input"
             name="password"
-            onChange={[Function]}
+            onChange={[MockFunction]}
             placeholder="Password"
             required={true}
             type="password"
@@ -71,7 +71,6 @@ exports[`should render SignIn correctly 1`] = `
       >
         <a
           className="locations__item-link"
-          href="#"
         >
           <span>
             Paris

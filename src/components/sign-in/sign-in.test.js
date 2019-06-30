@@ -10,6 +10,9 @@ it(`should render SignIn correctly`, () => {
         onLogin={jest.fn()}
         activeCity={`Paris`}
         location={{pathname: ``}}
+        email={``}
+        password={``}
+        handleFormChange={jest.fn()}
       />
   ).toJSON();
 
