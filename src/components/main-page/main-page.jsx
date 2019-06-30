@@ -11,7 +11,6 @@ import withDropdown from '../../hocs/with-dropdown/with-dropdown.jsx';
 import {initialState} from '../../reducer/cities/cities.js';
 import Offer from '../../types/offer-type.js';
 import SortingOptions from '../sorting-options/sorting-options.jsx';
-import Header from '../header/header.jsx';
 
 const OffersListWrapper = withActiveItem()(OffersList);
 const CitiesListWrapper = withActiveItem(initialState.city)(CitiesList);
@@ -25,46 +24,38 @@ const SortingFunctions = {
 };
 
 const MainPage = (props) => {
-  const {offers, leaflet, activeCity, onCityClick, userProfile, currentSortType, onChangeSortType, currentOfferId} = props;
+  const {offers, leaflet, activeCity, onCityClick, currentSortType, onChangeSortType, currentOfferId} = props;
 
   const sortedOffers = offers.sort(SortingFunctions[currentSortType]);
-  return (
-  <>
-    <Header userProfile={userProfile}/>
-
-    <main className="page__main page__main--index">
-      <h1 className="visually-hidden">Cities</h1>
-      <div className="cities tabs">
-        <CitiesListWrapper onCityClick={onCityClick}/>
-      </div>
-      <div className="cities__places-wrapper">
-        <div className="cities__places-container container">
-          <section className="cities__places places">
-            <h2 className="visually-hidden">Places</h2>
-            <b className="places__found">{offers.length} places to stay in {activeCity}</b>
-            <SortingOptionsWrapper currentSortType={currentSortType} onSelect={onChangeSortType}/>
-            <OffersListWrapper
-              offers={sortedOffers}
-              cardComponent={OfferCard}
-              className={`cities__places-list places__list tabs__content`}/>
-          </section>
-          <div className="cities__right-section">
-            <Map
-              mapData={mapData}
-              activeCity={activeCity}
-              offers={offers}
-              leaflet={leaflet}
-              className={`cities`}
-              currentOfferId={currentOfferId}
-            />
-          </div>
+  return <main className="page__main page__main--index">
+    <h1 className="visually-hidden">Cities</h1>
+    <div className="cities tabs">
+      <CitiesListWrapper onCityClick={onCityClick}/>
+    </div>
+    <div className="cities__places-wrapper">
+      <div className="cities__places-container container">
+        <section className="cities__places places">
+          <h2 className="visually-hidden">Places</h2>
+          <b className="places__found">{offers.length} places to stay in {activeCity}</b>
+          <SortingOptionsWrapper currentSortType={currentSortType} onSelect={onChangeSortType}/>
+          <OffersListWrapper
+            offers={sortedOffers}
+            cardComponent={OfferCard}
+            className={`cities__places-list places__list tabs__content`}/>
+        </section>
+        <div className="cities__right-section">
+          <Map
+            mapData={mapData}
+            activeCity={activeCity}
+            offers={offers}
+            leaflet={leaflet}
+            className={`cities`}
+            currentOfferId={currentOfferId}
+          />
         </div>
       </div>
-
-    </main>
-    </>
-  );
-
+    </div>
+  </main>;
 };
 
 MainPage.propTypes = {
@@ -72,13 +63,6 @@ MainPage.propTypes = {
   leaflet: PropTypes.object.isRequired,
   activeCity: PropTypes.string.isRequired,
   onCityClick: PropTypes.func.isRequired,
-  userProfile: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    email: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    avatarUrl: PropTypes.string.isRequired,
-    isPro: PropTypes.bool.isRequired,
-  }),
   currentSortType: PropTypes.string.isRequired,
   onChangeSortType: PropTypes.func.isRequired,
   currentOfferId: PropTypes.number,

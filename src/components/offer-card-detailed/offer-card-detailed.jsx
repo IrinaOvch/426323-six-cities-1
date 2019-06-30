@@ -14,7 +14,6 @@ import mapData from '../../mocks/map-data.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
 import OffersList from '../offers-list/offers-list.jsx';
 import ReviewForm from '../review-form/review-form.jsx';
-import Header from '../header/header.jsx';
 import OfferCard from "../offer-card/offer-card.jsx";
 
 const AMOUNT_OF_NEARBY_OFFERS = 3;
@@ -44,7 +43,7 @@ class OfferCardDetailed extends React.PureComponent {
   }
 
   render() {
-    const {isLoggedIn, userProfile, offer, reviews, offerId, activeCity, offers, leaflet, sendReview, isFormSending, errors} = this.props;
+    const {isLoggedIn, offer, reviews, offerId, activeCity, offers, leaflet, sendReview, isFormSending, errors} = this.props;
     if (offerId === 0) {
       return <Redirect to={`/`}/>;
     }
@@ -52,7 +51,6 @@ class OfferCardDetailed extends React.PureComponent {
     const nearbyOffers = offers.filter((currentOffer) => currentOffer.id !== offerId).slice(0, AMOUNT_OF_NEARBY_OFFERS);
 
     return <>
-    <Header userProfile={userProfile}/>
     <main className="page__main page__main--property">
       <section className="property">
         <div className="property__gallery-container container">
@@ -187,13 +185,6 @@ OfferCardDetailed.propTypes = {
   activeCity: PropTypes.string.isRequired,
   leaflet: PropTypes.object.isRequired,
   offers: PropTypes.arrayOf(Offer),
-  userProfile: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    email: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    avatarUrl: PropTypes.string.isRequired,
-    isPro: PropTypes.bool.isRequired,
-  }),
   sendReview: PropTypes.func.isRequired,
   errors: PropTypes.string,
   isFormSending: PropTypes.bool.isRequired,
@@ -210,7 +201,6 @@ const mapStateToProps = (state, ownProps) => {
 
   return Object.assign({}, ownProps, {
     isLoggedIn: Boolean(getUserProfile(state)),
-    userProfile: getUserProfile(state),
     offer: getOffer(state, number),
     offerId: number,
     reviews: number !== 0 ? getReviews(state, number) : [],

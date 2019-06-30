@@ -11,13 +11,6 @@ import {createAPI} from '../../api.js';
 import reducer from '../../reducer/reducer.js';
 
 it(`should render Favorites correctly`, () => {
-  const userProfile = {
-    id: 1,
-    email: ``,
-    name: ``,
-    avatarUrl: ``,
-    isPro: false,
-  };
   const api = createAPI((...args) => store.dispatch(...args));
   const store = createStore(reducer, applyMiddleware(thunk.withExtraArgument(api)));
   const page = renderer.create(
@@ -26,7 +19,6 @@ it(`should render Favorites correctly`, () => {
           <Favorites
             favorites={{'Paris': [offers[0]]}}
             loadFavorites={jest.fn()}
-            userProfile={userProfile}
           />
         </MemoryRouter>
       </Provider>

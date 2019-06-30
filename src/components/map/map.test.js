@@ -4,7 +4,7 @@ import {Provider} from "react-redux";
 import {createStore, applyMiddleware} from "redux";
 import thunk from 'redux-thunk';
 
-import Map from './map.jsx'
+import Map from './map.jsx';
 import offers from '../../mocks/offers.js';
 import mapData from '../../mocks/map-data.js';
 import leaflet from '../../mocks/leaflet.js';
