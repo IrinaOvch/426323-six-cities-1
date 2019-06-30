@@ -8,7 +8,8 @@ import Offer from '../../types/offer-type.js';
 import ReviewsList from '../reviews-list/reviews-list.jsx';
 import Review from '../../types/review-type.js';
 import {ActionCreator as CitiesActionCreator} from '../../reducer/cities/cities.js';
-import {getOffer, getReviews, getUserProfile, getFormSendingState, getFormErrors} from '../../reducer/selectors';
+import {ActionCreator as DataActionCreator} from '../../reducer/data/data.js';
+import {getOffer, getReviews, getUserProfile, getFormSendingState, getFormErrors, getCurrentOffer} from '../../reducer/selectors';
 import {Operation} from '../../reducer/data/data.js';
 import mapData from '../../mocks/map-data.js';
 import withActiveItem from '../../hocs/with-active-item/with-active-item.jsx';
@@ -24,12 +25,23 @@ const OffersListWrapper = withActiveItem()(OffersList);
 
 
 class OfferCardDetailed extends React.PureComponent {
+  constructor(props) {
+    super(props);
 
+    this.handleBookmarkClick = this.handleBookmarkClick.bind(this);
+  }
   componentDidMount() {
     this.props.getReviews(this.props.offerId);
-    if (this.props.offer) {
-      this.props.updateActiveCity(this.props.offer.city);
+    if (!this.props.offer) {
+      return;
     }
+
+    this.props.updateActiveCity(this.props.offer.city);
+  }
+
+  handleBookmarkClick() {
+    const {updateFavorite, offer} = this.props;
+    updateFavorite(offer.id, !offer.isInBookmarks ? 1 : 0);
   }
 
   render() {
@@ -37,7 +49,8 @@ class OfferCardDetailed extends React.PureComponent {
     if (offerId === 0) {
       return <Redirect to={`/`}/>;
     }
-    const filteredOffers = offers.filter((currentOffer) => currentOffer.id !== offerId).slice(0, AMOUNT_OF_NEARBY_OFFERS);
+    const filteredOffers = offers.slice(0, AMOUNT_OF_NEARBY_OFFERS + 1);
+    const nearbyOffers = offers.filter((currentOffer) => currentOffer.id !== offerId).slice(0, AMOUNT_OF_NEARBY_OFFERS);
 
     return <>
     <Header userProfile={userProfile}/>
@@ -64,8 +77,11 @@ class OfferCardDetailed extends React.PureComponent {
               <h1 className="property__name">
                 {offer.title}
               </h1>
-              <button className="property__bookmark-button button" type="button">
-                <svg className="property__bookmark-icon" width="31" height="33">
+              <button
+                className={`property__bookmark-button button ${offer.isInBookmarks ? `property__bookmark-button--active` : ``}`}
+                type="button"
+                onClick={this.handleBookmarkClick}>
+                <svg className="property__bookmark-icon place-card__bookmark-icon" width="31" height="33">
                   <use xlinkHref="#icon-bookmark"></use>
                 </svg>
                 <span className="visually-hidden">To bookmarks</span>
@@ -143,6 +159,7 @@ class OfferCardDetailed extends React.PureComponent {
           offers={filteredOffers}
           leaflet={leaflet}
           className={`property`}
+          currentOfferId={offerId}
         />
       </section>
       <div className="container">
@@ -150,7 +167,7 @@ class OfferCardDetailed extends React.PureComponent {
           <h2 className="near-places__title">Other places in the neighbourhood</h2>
           <div className="near-places__list places__list">
             <OffersListWrapper
-              offers={filteredOffers}
+              offers={nearbyOffers}
               cardComponent={OfferCard}
               className={`cities__places-list places__list tabs__content`}/>
           </div>
@@ -181,6 +198,9 @@ OfferCardDetailed.propTypes = {
   sendReview: PropTypes.func.isRequired,
   errors: PropTypes.string,
   isFormSending: PropTypes.bool.isRequired,
+  updateFavorite: PropTypes.func.isRequired,
+  currentOffer: Offer,
+  onChangeCurrentOffer: PropTypes.func.isRequired,
 };
 
 const validateNumber = (text) => {
@@ -199,6 +219,7 @@ const mapStateToProps = (state, ownProps) => {
     reviews: number !== 0 ? getReviews(state, number) : [],
     isFormSending: getFormSendingState(state),
     errors: getFormErrors(state),
+    currentOffer: getCurrentOffer(state),
   });
 };
 
@@ -206,6 +227,8 @@ const mapDispatchToProps = (dispatch) => ({
   getReviews: (offerId) => dispatch(Operation.loadReviews(offerId)),
   updateActiveCity: (city) => dispatch(CitiesActionCreator.changeCity(city)),
   sendReview: (offerId, rating, comment) => dispatch(Operation.sendReview(offerId, rating, comment)),
+  updateFavorite: (offerId, status) => dispatch(Operation.updateFavorite(offerId, status)),
+  onChangeCurrentOffer: (currentOffer) => dispatch(DataActionCreator.changeCurrentOffer(currentOffer)),
 });
 
 export {OfferCardDetailed};

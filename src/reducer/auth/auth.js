@@ -16,7 +16,7 @@ const ActionCreator = {
     type: `UPDATE_USER_PROFILE`,
     payload: userProfile,
   }),
-  errorInAuthentication: (error) => ({
+  setAuthenticationError: (error) => ({
     type: `ERROR_IN_AUTHENTICATION`,
     payload: error
   })
@@ -31,7 +31,7 @@ const Operation = {
       .then((response) => {
         dispatch(ActionCreator.updateUserProfile(ProfileParser.parseProfile(response.data)));
       }).catch((error) => {
-        dispatch(ActionCreator.errorInAuthentication(error));
+        dispatch(ActionCreator.setAuthenticationError(error));
       });
   },
   getLogin: () => (dispatch, _getState, api) => {
@@ -40,7 +40,7 @@ const Operation = {
         if (response) {
           dispatch(ActionCreator.updateUserProfile(ProfileParser.parseProfile(response.data)));
         } else {
-          dispatch(ActionCreator.errorInAuthentication(`user is not authenticated`));
+          dispatch(ActionCreator.setAuthenticationError(`user is not authenticated`));
         }
       });
   }
