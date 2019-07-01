@@ -4,10 +4,10 @@ import PropTypes from "prop-types";
 class SortingOption extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.sortBy = this.sortBy.bind(this);
+    this.handleSortBy = this.handleSortBy.bind(this);
   }
 
-  sortBy() {
+  handleSortBy() {
     const {onSelect, sortingOption, onToggleDropdown} = this.props;
 
     onSelect(sortingOption);
@@ -19,7 +19,7 @@ class SortingOption extends React.PureComponent {
     return <li
       className={`places__option ${ activeItem ? `places__option--active` : ``}`}
       tabIndex="0"
-      onClick={this.sortBy}>
+      onClick={this.handleSortBy}>
       {sortingOption}
     </li>;
   }

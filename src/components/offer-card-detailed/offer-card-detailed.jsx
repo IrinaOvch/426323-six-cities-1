@@ -47,8 +47,9 @@ class OfferCardDetailed extends React.PureComponent {
     if (offerId === 0) {
       return <Redirect to={`/`}/>;
     }
-    const filteredOffers = offers.slice(0, AMOUNT_OF_NEARBY_OFFERS + 1);
     const nearbyOffers = offers.filter((currentOffer) => currentOffer.id !== offerId).slice(0, AMOUNT_OF_NEARBY_OFFERS);
+
+    const mapOffers = [...nearbyOffers, offer];
 
     return <>
     <main className="page__main page__main--property">
@@ -153,7 +154,7 @@ class OfferCardDetailed extends React.PureComponent {
         <Map
           mapData={mapData}
           activeCity={activeCity}
-          offers={filteredOffers}
+          offers={mapOffers}
           leaflet={leaflet}
           className={`property`}
           currentOfferId={offerId}
